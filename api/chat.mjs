@@ -52,7 +52,12 @@ export default {
     }
 
     const history = body?.messages;
+    const responseCount = body?.responseCount ?? 0;
+    const callbackReceived = body?.callbackReceived ?? false;
+    const callbackDisclosureShown = body?.callbackDisclosureShown ?? false;
     if (!Array.isArray(history) || history.length < 1 || history.length > maxMessages ||
+        !Number.isInteger(responseCount) || responseCount < 0 || responseCount > 12 ||
+        typeof callbackReceived !== 'boolean' || typeof callbackDisclosureShown !== 'boolean' ||
         history.some((message, index) =>
           !message || message.role !== (index % 2 === 0 ? 'user' : 'model') ||
           typeof message.text !== 'string' || !message.text.trim() ||
@@ -77,8 +82,37 @@ export default {
             'Authorization': `Bearer ${token}`
           },
           body: JSON.stringify({
-            systemInstruction: { parts: [{ text: poloInstructions }] },
+            systemInstruction: { parts: [{ text: poloInstructions +
+              (callbackDisclosureShown
+                ? '\nKunden har fått informationen om testbokning. Om kunden nu skriver sitt eget nummer för återuppringning, använd spara_ateruppringning.'
+                : '\nInformationen om testbokning har ännu inte visats. Använd visa_ateruppringning innan kunden lämnar sina uppgifter.') +
+              (responseCount >= 10
+              ? (callbackReceived
+                ? '\nKunden har redan skickat en begäran om återuppringning. Fråga inte efter kontaktuppgifterna igen.'
+                : '\nSamtalet närmar sig sitt slut. Styr vänligt mot återuppringning och be kunden skriva sitt telefonnummer och eventuellt namn i chatten.')
+              : '') }] },
             contents: history.map(({ role, text }) => ({ role, parts: [{ text }] })),
+            tools: [{
+              functionDeclarations: [
+                {
+                  name: 'visa_ateruppringning',
+                  description: 'Visa information om återuppringning. Sparar inget och bokar ingen tid.',
+                  parameters: { type: 'OBJECT', properties: {} }
+                },
+                {
+                  name: 'spara_ateruppringning',
+                  description: 'Begär återuppringning när kunden själv skriver sitt telefonnummer efter att informationen om testbokningen har visats. Använd bara uppgifter från kunden, aldrig påhittade.',
+                  parameters: {
+                    type: 'OBJECT',
+                    properties: {
+                      phone: { type: 'STRING', description: 'Kundens eget telefonnummer, som det står i kundens senaste meddelande.' },
+                      name: { type: 'STRING', description: 'Kundens eget namn om kunden själv har angett det, annars tomt.' }
+                    },
+                    required: ['phone']
+                  }
+                }
+              ]
+            }],
             generationConfig: { maxOutputTokens: 1024, thinkingConfig: { thinkingLevel: 'LOW' } }
           }),
           signal: AbortSignal.timeout(25000)
@@ -92,15 +126,43 @@ export default {
 
       stage = 'läsning av Gemini-svar';
       const result = await response.json();
-      const reply = result.candidates?.[0]?.content?.parts
+      const parts = result.candidates?.[0]?.content?.parts;
+      const callbackCall = parts?.find(part => part.functionCall?.name === 'spara_ateruppringning')?.functionCall;
+      const lastMessage = history[history.length - 1].text;
+      const phoneCandidates = lastMessage.match(/\+?\d[\d ()-]{5,23}\d/g) || [];
+      const needsDisclosure = !callbackDisclosureShown && (callbackCall || phoneCandidates.length > 0);
+      const showCallback = Boolean(needsDisclosure || parts?.some(part => part.functionCall?.name === 'visa_ateruppringning'));
+      let callback;
+      if (callbackCall && callbackDisclosureShown && !callbackReceived) {
+        const phone = callbackCall.args?.phone;
+        const name = callbackCall.args?.name ?? '';
+        if (typeof phone !== 'string' || !/^\+?[0-9 ()-]{7,25}$/.test(phone) ||
+            phone.replace(/\D/g, '').length < 7 || phone.replace(/\D/g, '').length > 15 ||
+            !phoneCandidates.some(candidate => candidate.replace(/\D/g, '') === phone.replace(/\D/g, ''))) {
+          console.error('Gemini returnerade ett ogiltigt telefonnummer.');
+          return error('Jag kunde inte läsa telefonnumret. Skriv det gärna igen.', 502);
+        }
+        const validName = typeof name === 'string' && name.length <= 100 && !/[\u0000-\u001f\u007f]/.test(name) &&
+          (!name.trim() || history.some(message => message.role === 'user' &&
+            message.text.toLocaleLowerCase('sv-SE').includes(name.trim().toLocaleLowerCase('sv-SE'))));
+        if (!validName) console.error('Gemini returnerade ett namn som inte kunde verifieras.');
+        callback = { phone: phone.trim(), name: validName ? name.trim() : '' };
+      }
+      const reply = needsDisclosure
+        ? 'Jag hjälper gärna till! Läs gärna informationen nedan och skriv sedan ditt nummer igen om du vill bli uppringd.'
+        : callbackDisclosureShown && !callbackReceived && phoneCandidates.length && !callback
+          ? 'Jag kunde inte ta emot numret just nu. Skriv det gärna igen eller ring/sms:a 0738-99 79 33.'
+        : parts
         ?.filter(part => typeof part.text === 'string' && !part.thought)
-        .map(part => part.text).join('').trim();
+        .map(part => part.text).join('').trim() ||
+        (callback ? 'Ett ögonblick medan jag tar emot din förfrågan.' :
+          showCallback ? 'Självklart! Du kan skriva ditt nummer här så ringer vi upp.' : '');
       if (!reply || reply.length > 2000) {
         console.error('Gemini returnerade inget användbart svar.');
         return error('Polo kunde inte svara just nu. Försök igen om en stund.', 502);
       }
 
-      return Response.json({ reply });
+      return Response.json({ reply, showCallback, callback });
     } catch (cause) {
       console.error('Polo misslyckades vid', stage, ':', cause?.name);
       return error('Polo kunde inte nås just nu. Försök igen om en stund.', 502);

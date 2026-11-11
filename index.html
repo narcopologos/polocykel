@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#171916">
-  <meta name="description" content="Polos Rullande Cykelverkstad erbjuder cykelservice på plats och från verkstaden i Helsingborg.">
+  <meta name="description" content="Polos Rullande Cykelverkstad erbjuder cykelservice i Helsingborg, på plats och med upphämtning eller leverans.">
   <title>Polos Rullande Cykelverkstad | Cykelservice i Helsingborg</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,10 +26,7 @@
     .brand-mark{width:42px;height:42px;color:var(--orange)}
     .brand-name{font-family:Manrope,sans-serif;font-size:15px;line-height:1.15;font-weight:800;letter-spacing:-.04em}
     .brand-name span{display:block;color:var(--muted);font-family:"DM Sans",sans-serif;font-size:10px;font-weight:500;letter-spacing:.11em;text-transform:uppercase;margin-top:5px}
-    .nav{display:flex;align-items:center;gap:34px;color:#c7c8bf;font-size:13px;font-weight:600}
-    .nav a:hover,.text-link:hover{color:var(--orange)}
-    .nav-cta{border:1px solid #65675e;padding:12px 17px;border-radius:4px;color:var(--cream)!important}
-    .nav-cta:hover{border-color:var(--orange)}
+    .text-link:hover{color:var(--orange)}
     .hero{position:relative;min-height:665px;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden}
     .hero-copy{position:relative;z-index:2;padding:80px 0 90px}
     .eyebrow{display:flex;align-items:center;gap:10px;color:var(--orange);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
@@ -61,8 +58,7 @@
     .service-card:hover{background:#20221e}
     .service-top{display:flex;align-items:flex-start;justify-content:space-between;color:var(--orange)}
     .service-icon{width:36px;height:36px;stroke-width:1.3}
-    .service-number{color:#777b70;font-size:10px;letter-spacing:.1em}
-    .service-card h3{margin-top:auto;padding-top:45px;font-size:19px;letter-spacing:-.04em}
+    .service-card h3{margin-top:auto;padding-top:45px;font-size:19px;letter-spacing:-.04em;overflow-wrap:anywhere}
     .service-card p{max-width:300px;margin-top:12px;color:var(--muted);font-size:13px;line-height:1.7}
     .booking{background:#22241f;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .booking-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:80px}
@@ -80,7 +76,6 @@
     .chat-toggle-icon{color:#aaa;transition:transform .2s}
     .chat-header[aria-expanded="true"] .chat-toggle-icon{transform:rotate(180deg)}
     .chat-body{border-top:1px solid var(--line)}
-    .chat-notice{margin:16px 20px 0;color:#babbb0;font-size:11px;line-height:1.5}
     .messages{height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:20px}
     .message{max-width:85%;padding:12px 14px;border-radius:3px 12px 12px 12px;background:#30332d;color:#e4e5db;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
     .message.user{align-self:flex-end;background:#e9955d;color:#211b16;border-radius:12px 3px 12px 12px}
@@ -109,7 +104,7 @@
       .hero{min-height:600px}.hero-art{right:-15%;width:68%;opacity:.65}.hero-copy{max-width:570px}.booking-grid,.contact-grid{gap:45px}
     }
     @media(max-width:640px){
-      .wrap{width:min(100% - 36px,1280px)}.header{height:auto;flex-wrap:wrap;gap:12px;padding:15px 0}.brand-name{font-size:13px}.brand-mark{width:36px;height:36px}.nav{width:100%;justify-content:space-between;gap:14px;font-size:12px}.nav-cta{padding:9px 12px}
+      .wrap{width:min(100% - 36px,1280px)}.header{height:auto;gap:12px;padding:15px 0}.brand-name{font-size:13px}.brand-mark{width:36px;height:36px}
       .hero{display:block;min-height:0}.hero-copy{padding:69px 0 315px}.hero h1{font-size:clamp(43px,11vw,60px)}.hero-description{font-size:15px}.hero-art{width:115%;right:-17%;top:auto;bottom:4px;transform:none;opacity:.85}.hero-index{bottom:20px;font-size:9px}
       .strip-inner{padding:20px 0;min-height:0;flex-wrap:wrap;gap:16px}.strip-item{font-size:11px}.strip-note{display:none}
       .section{padding:82px 0}.section-heading{display:block;margin-bottom:32px}.services{grid-template-columns:1fr}.service-card{min-height:205px;padding:25px}.service-card h3{padding-top:32px}
@@ -126,8 +121,6 @@
     .brand-mark{width:37px;height:37px}
     .brand-name{font-size:17px;letter-spacing:-.03em}
     .brand-name span{font-size:11px;letter-spacing:.07em;color:#d0cbc0}
-    .nav{gap:38px;font-size:15px;color:#e5e0d6}
-    .nav-cta{padding:13px 20px;border-color:#aaa49a;border-radius:100px}
     .hero{width:100%;max-width:none;min-height:min(760px,calc(100svh - 94px));display:flex;align-items:center;background:#262821 url("img/20240511_202811.jpg") center 48% / cover no-repeat;isolation:isolate}
     .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(15,17,14,.91) 0%,rgba(15,17,14,.82) 33%,rgba(15,17,14,.38) 67%,rgba(15,17,14,.18) 100%),linear-gradient(0deg,rgba(15,17,14,.55),transparent 40%)}
     .hero-copy{width:min(100% - 96px,1360px);max-width:1360px;margin:auto;padding:100px 0 125px}
@@ -157,7 +150,6 @@
     .service-card:hover{background:transparent}
     .service-top{color:#c15c22}
     .service-icon{width:42px;height:42px}
-    .service-number{font-size:12px;color:#77776c}
     .service-card h3{font-size:23px;letter-spacing:-.03em}
     .service-card p{max-width:330px;color:#595b52;font-size:16px;line-height:1.65}
     .story{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,7vw,110px);margin-top:100px}
@@ -178,7 +170,6 @@
     .chat-title span{color:#64645b;font-size:13px}
     .chat-toggle-icon{color:#484941}
     .chat-body{border-color:#d6d1c5}
-    .chat-notice{margin:18px 24px 0;color:#62635b;font-size:13px}
     .messages{height:260px;padding:24px}
     .message{background:#e2ded3;color:#30312c;font-size:15px;line-height:1.6}
     .message.user{background:#edb18a;color:#241a14}
@@ -204,11 +195,9 @@
     }
     @media(max-width:640px){
       .wrap{width:calc(100% - 40px)}
-      .header{min-height:112px;padding:16px 0;gap:14px}
+      .header{min-height:0;padding:16px 0;gap:14px}
       .brand-mark{width:34px;height:34px}
       .brand-name{font-size:15px}
-      .nav{font-size:14px;gap:12px}
-      .nav-cta{padding:9px 14px}
       .hero{width:100%;min-height:690px;background-position:62% center}
       .hero::before{background:linear-gradient(90deg,rgba(15,17,14,.83),rgba(15,17,14,.52)),linear-gradient(0deg,rgba(15,17,14,.62),transparent 55%)}
       .hero-copy{width:calc(100% - 40px);padding:90px 0 120px}
@@ -276,7 +265,7 @@
       .contact-row small{display:none}
       .footer-inner{min-height:48px}
     }
-    .service-photo{position:relative;overflow:hidden;background:#d5cfc1 url("img/20250520_214107.jpg") center / cover no-repeat}
+    .service-photo{position:relative;overflow:hidden;background:#d5cfc1 url("img/20250520_214107.jpg") center 30% / cover no-repeat}
     .service-photo::after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(18,19,16,.82))}
     .service-photo span{position:absolute;z-index:1;left:20px;bottom:18px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.02em}
     @media(min-width:700px) and (max-width:1000px){
@@ -287,28 +276,67 @@
       .service-card p{font-size:13px}
     }
     @media(max-width:699px){
-      .service-photo{min-height:240px;margin-bottom:25px}
+      .service-photo{width:100%;min-width:0;min-height:0;aspect-ratio:16/9;margin-bottom:25px}
       .closing.wrap{width:100%}
+    }
+    @media(max-width:420px){
+      .service-photo{aspect-ratio:4/3}
     }
     /* Logotyp och fristående chattpanel. */
     .brand-mark{width:53px;height:40px;flex:none}
     .brand-name{font-family:Manrope,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.025em;white-space:nowrap}
-    .chat-shell{position:fixed;z-index:50;right:24px;bottom:24px;width:min(320px,calc(100% - 32px));max-height:calc(100dvh - 48px);margin:0;display:flex;flex-direction:column-reverse;box-shadow:0 18px 70px rgba(0,0,0,.4)}
+    .chat-shell{position:fixed;z-index:50;right:24px;bottom:24px;width:min(260px,calc(100% - 32px));max-height:calc(100dvh - 48px);margin:0;display:flex;flex-direction:column-reverse;box-shadow:0 18px 70px rgba(0,0,0,.4)}
+    .chat-shell.is-open{width:min(clamp(320px,24vw,480px),calc(100% - 48px));height:min(70dvh,calc(100dvh - 48px))}
     .chat-header{flex-shrink:0}
-    .chat-body{min-height:0;display:flex;flex-direction:column;background:#f4f0e7;color:#24241f;border:0;border-bottom:1px solid #d6d1c5;overflow:hidden}
-    .chat-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 20px;border-bottom:1px solid #d6d1c5}
-    .chat-panel-heading strong{font-size:15px}
-    .chat-close{width:36px;height:36px;border:0;border-radius:50%;background:#e5e0d6;color:#24241f;font-size:24px;line-height:1}
+    .chat-header[aria-expanded="true"]{display:none}
+    .chat-body{flex:1;min-height:0;display:flex;flex-direction:column;background:#f4f0e7;color:#24241f;border:0;overflow:hidden}
+    .chat-panel-heading{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:17px 20px;border-bottom:1px solid #d6d1c5}
+    .chat-panel-heading strong{font-size:13px}
+    .chat-panel-heading small{color:#62635b;font-size:9px;font-weight:400;white-space:nowrap}
+    .chat-close{width:36px;height:36px;flex:none;border:0;border-radius:50%;background:#e5e0d6;color:#24241f;font-size:24px;line-height:1}
     .chat-close:hover{background:#d7cfc0}
-    .chat-body .messages{flex:1;min-height:80px}
-    .chat-form{flex-shrink:0}
+    .chat-body .messages{flex:1 1 0;min-height:0;height:auto;overscroll-behavior:contain}
+    .chat-body .message{flex-shrink:0}
+    .callback-open{align-self:flex-start;margin:0 24px;color:#97430f;background:none;border:0;padding:4px 0;text-decoration:underline;text-underline-offset:3px;font-size:12px}
+    .callback-card{flex-shrink:0;display:grid;gap:10px;padding:14px;background:#fffdfa;border:1px solid #d6d1c5;border-radius:8px;font-size:13px;line-height:1.5}
+    .callback-card p{margin:0}
+    .callback-card label{display:grid;gap:4px;font-weight:600}
+    .callback-card input{width:100%;min-width:0;padding:9px;border:1px solid #aaa59a;border-radius:4px;background:white;color:#24241f;font:inherit}
+    .callback-card button{padding:10px;border:0;border-radius:4px;background:var(--orange);color:#171916;font-weight:700}
+    .callback-card button:disabled{opacity:.55;cursor:wait}
+    .callback-status{color:#8b341e}
+    .chat-form{flex-shrink:0;padding-bottom:6px}
+    .chat-credit{flex-shrink:0;padding:0 24px 14px;color:#62635b;font-size:11px;line-height:1.4}
+    .chat-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .chat-credit a:hover{color:#a34817}
     .footer{padding:24px 0 110px}
     .footer-inner{min-height:0;align-items:flex-start;gap:24px}
-    .footer-branding{display:grid;gap:8px}
+    .footer-branding{display:grid;gap:3px}
+    .footer-tagline{color:#a09f95;font-size:11px;font-style:italic;line-height:1.35}
     .footer .contact-list{display:flex;flex-wrap:wrap;gap:16px 30px;margin:0;border:0}
     .footer .contact-row{display:block;padding:0;border:0;font-size:13px;line-height:1.5}
-    .footer .contact-row dt{font-size:11px}
+    .footer .contact-row dt{color:#e1ded6;font-size:12px;font-weight:600}
+    .footer .contact-row dd{color:#fff;font-size:14px}
     .footer .contact-row small{display:none}
+    #tjanster{padding:32px 0}
+    .service-top{align-items:center;justify-content:flex-start;gap:10px}
+    .service-top .service-icon{width:36px;height:36px;flex:none}
+    .service-top h3{margin:0;padding:0;color:#24241f;font-size:22px;font-weight:800;line-height:1.2}
+    .service-card p{margin-top:14px}
+    @media(min-width:700px){
+      .service-photo{min-height:0;aspect-ratio:16/9;align-self:start}
+      .service-card{justify-content:center;padding-top:24px;padding-bottom:24px}
+      .service-card+.service-card{padding-top:24px;padding-bottom:24px}
+    }
+    @media(min-width:700px) and (max-width:1000px){
+      .service-top{gap:7px}
+      .service-top .service-icon{width:32px;height:32px}
+      .service-top h3{font-size:20px}
+      .services-layout{grid-template-columns:minmax(0,1fr)}
+      .service-photo{width:min(100%,400px)}
+      .service-card{padding-right:10px}
+      .service-card+.service-card{padding-left:10px;padding-right:10px}
+    }
     @media(min-width:1101px){
       .footer{padding-bottom:24px}
       .footer-inner{padding-right:320px}
@@ -319,21 +347,27 @@
     }
     @media(max-width:699px), (max-height:500px){
       .chat-shell{right:16px;bottom:16px;width:min(220px,calc(100% - 32px));max-height:calc(100dvh - 32px)}
-      .chat-shell.is-open{width:min(280px,calc(100% - 32px));max-height:min(70dvh,calc(100dvh - 32px))}
+      .chat-shell.is-open{width:min(480px,calc(100% - 32px));height:min(70dvh,calc(100dvh - 32px))}
       .chat-header{gap:10px;padding:10px 12px}
-      .chat-header[aria-expanded="true"]{display:none}
       .chat-avatar{width:36px;height:36px}
       .chat-title strong{font-size:14px;line-height:1.3}
       .chat-title span{display:none}
-      .chat-body{overflow-y:auto}
-      .chat-panel-heading{padding:10px 14px}
-      .chat-notice{margin:10px 14px 0;font-size:12px}
-      .chat-body .messages{flex:0 0 clamp(100px,20dvh,160px);padding:12px 14px}
-      .chat-form{padding:8px 14px 14px}
+      .chat-panel-heading{gap:8px;padding:10px}
+      .chat-close{width:32px;height:32px}
+      .chat-body .messages{padding:12px 14px}
+      .chat-form{padding:8px 14px 6px}
       .chat-form input{font-size:16px}
+      .chat-credit{padding:0 14px 10px}
+    }
+    @media(max-height:500px){
+      .chat-shell.is-open{height:min(360px,calc(100dvh - 32px))}
     }
     @media(max-width:699px){
       .brand-name{font-size:clamp(12px,3.8vw,15px)}
+      .header{height:auto;min-height:0;padding:16px 0}
+      .services{grid-template-columns:1fr}
+      .service-card{min-height:0;padding:27px 0}
+      .service-card+.service-card{padding:27px 0;border-left:0;border-top:1px solid #c9c5ba}
       .footer{padding-bottom:145px}
       .footer-inner{padding:0}
       .footer .contact-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
@@ -356,11 +390,6 @@
       </svg>
       <span class="brand-name">Polos Rullande Cykelverkstad</span>
     </a>
-    <nav class="nav" aria-label="Huvudmeny">
-      <a href="#tjanster">Tjänster</a>
-      <a href="#chat-body" class="nav-cta" data-open-chat>Boka / chatta <span aria-hidden="true">↗</span></a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
   </header>
 
   <main id="top">
@@ -369,10 +398,9 @@
       <div class="hero-copy">
         <div class="eyebrow">Din cykelmekaniker i Helsingborg</div>
         <h1 id="hero-title">Flexibel cykelservice<br><em>På dina villkor.</em></h1>
-        <p class="hero-description"><strong>Professionell cykelservice i Helsingborg – på plats eller från verkstaden.</strong> Från vardagshojar och racers till elcyklar och tunga el-cargobikes. Punkteringar, underhåll, service, reparation och restaurering.</p>
+        <p class="hero-description"><strong>Professionell Cykelservice i Helsingborg, upphämtning och/eller leverans samt service på plats.</strong> Stadscyklar, Elcyklar, lådcyklar, MTB eller landsvägscyklar. Punkteringar, service/underhåll, reparationer och restorationer. Polo fixar det mesta!</p>
         <div class="hero-actions">
           <a class="button-primary" href="#chat-body" data-book>Boka service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-          <a class="text-link" href="#tjanster">Upptäck tjänsterna <span aria-hidden="true">↓</span></a>
         </div>
       </div>
       <div class="hero-index">Helsingborg &nbsp; / &nbsp; På väg igen</div>
@@ -381,30 +409,27 @@
     <div class="strip">
       <div class="wrap strip-inner">
         <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg> Baserad i Mariastaden</div>
-        <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="6" cy="17" r="4"/><circle cx="18" cy="17" r="4"/><path d="m6 17 5-8 4 8H6l6-5h4l2 5M10 9h3m3-3h2"/></svg> Service som kommer till dig</div>
+        <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="6" cy="17" r="4"/><circle cx="18" cy="17" r="4"/><path d="m6 17 5-8 4 8H6l6-5h4l2 5M10 9h3m3-3h2"/></svg> Verkstaden som kommer till dig</div>
         <div class="strip-note">Helsingborg, Sverige &nbsp; / &nbsp; 56°03′ N</div>
       </div>
     </div>
 
     <!-- Tjänster -->
-    <section class="wrap section" id="tjanster" aria-labelledby="services-title">
-      <div class="section-heading">
-        <h2 class="eyebrow" id="services-title">Vad jag kan hjälpa till med</h2>
-      </div>
+    <section class="wrap section" id="tjanster" aria-label="Tjänster">
       <div class="services-layout">
-      <div class="service-photo" role="img" aria-label="Cykelservice på plats i Helsingborg, med cyklar och verktyg"><span>Verkstaden kommer till dig ↗</span></div>
+      <div class="service-photo" role="img" aria-label="Cykelservice på plats i Helsingborg, med cyklar och verktyg"><span>Verkstaden som kommer till dig ↗</span></div>
       <div class="services">
         <article class="service-card">
-          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="8" cy="23" r="6"/><circle cx="24" cy="23" r="6"/><path d="m8 23 6-10 5 10H8l8-7h5l3 7M12 13h4m4-4h3"/></svg><span class="service-number">01 / 03</span></div>
-          <h3>Standard &amp; vardag</h3><p>Växlar, bromsar, riktning av hjul och klassiskt underhåll.</p>
+          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="8" cy="23" r="6"/><circle cx="24" cy="23" r="6"/><path d="m8 23 6-10 5 10H8l8-7h5l3 7M12 13h4m4-4h3"/></svg><h3>Mobil cykelverkstad</h3></div>
+          <p>Vid t.ex. punkteringar eller om något har gått sönder, kedja/broms/växlar kan vi komma bort och åtgärda på plats.</p>
         </article>
         <article class="service-card">
-          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><rect x="7" y="6" width="18" height="22" rx="3"/><path d="M13 6V3h6v3m-2 5-4 7h4l-2 6 5-8h-4l1-5Z"/></svg><span class="service-number">02 / 03</span></div>
-          <h3>Elcykel &amp; drivlina</h3><p>Diagnostik, batteri- och motorfrågor samt kedjebyten.</p>
+          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><rect x="7" y="6" width="18" height="22" rx="3"/><path d="M13 6V3h6v3m-2 5-4 7h4l-2 6 5-8h-4l1-5Z"/></svg><h3>Elcyklar</h3></div>
+          <p>Elcyklar är också cyklar, vi diskriminerar inte. Även rostiga cyklar behöver kärlek, hos oss är alla cyklar välkomna!</p>
         </article>
         <article class="service-card">
-          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="7" cy="24" r="4"/><circle cx="25" cy="24" r="4"/><path d="M7 24h9l3-12H9l-2 12Zm12-12h8v8h-9M4 13h5m8-4h4"/></svg><span class="service-number">03 / 03</span></div>
-          <h3>Cargo &amp; special</h3><p>Avancerade reparationer av tunga el-cargobikes och specialbyggen.</p>
+          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="7" cy="24" r="4"/><circle cx="25" cy="24" r="4"/><path d="M7 24h9l3-12H9l-2 12Zm12-12h8v8h-9M4 13h5m8-4h4"/></svg><h3>Lådcyklar</h3></div>
+          <p>Vi har stor erfarenhet av alla möjliga lådcyklar, samt ett och annat specialbygge.</p>
         </article>
       </div>
       </div>
@@ -414,10 +439,10 @@
 
   <footer class="footer" id="kontakt">
     <div class="wrap footer-inner">
-      <div class="footer-branding"><span class="footer-brand">Polos Rullande Cykelverkstad</span><span>För att även cyklar behöver kärlek.</span></div>
+      <div class="footer-branding"><span class="footer-brand">Polos Rullande Cykelverkstad</span><span class="footer-tagline">För vem kan stoppa oss, när vi bara rullar fram?</span></div>
       <dl class="contact-list">
-        <div class="contact-row"><dt>Område</dt><dd>Mariastaden, Helsingborg</dd></div>
-        <div class="contact-row"><dt>Mejl</dt><dd>E-postadress kommer snart</dd></div>
+        <div class="contact-row"><dt>Utgår från</dt><dd>Mariastaden, Helsingborg</dd></div>
+        <div class="contact-row"><dt>Mejl</dt><dd><a href="mailto:service@polocykel.se">service@polocykel.se</a></dd></div>
         <div class="contact-row"><dt>Telefon / sms</dt><dd><a href="tel:+46738997933">0738-99 79 33 ↗</a></dd></div>
         <div class="contact-row"><dt>Socialt</dt><dd><a href="https://www.facebook.com/PoloCykel" target="_blank" rel="noopener noreferrer">Facebook ↗</a></dd></div>
       </dl>
@@ -427,24 +452,25 @@
   <div class="chat-shell">
     <button type="button" class="chat-header" id="chat-toggle" aria-expanded="false" aria-controls="chat-body">
       <span class="chat-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3-.6L5 20l1.5-4A7.5 7.5 0 1 1 20 11.5Z"/><path d="M9 11.5h7m-7 3h4"/></svg></span>
-      <span class="chat-title"><strong>Chatta med Polo</strong><span>Demoversion · öppna chatten</span></span>
+      <span class="chat-title"><strong>Chatta med Polo</strong><span>Öppna chatten</span></span>
       <svg class="chat-toggle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div class="chat-body" id="chat-body" role="region" aria-label="Chatta med Polo" hidden>
-      <div class="chat-panel-heading"><strong>Chatta med Polo</strong><button class="chat-close" id="chat-close" type="button" aria-label="Stäng chatten">×</button></div>
-      <p class="chat-notice">Polo är en AI-assistent i en demoversion. Meddelanden skickas till Google för att skapa svar. Bokning kan inte göras i chatten ännu.</p>
+      <div class="chat-panel-heading"><div><strong>Chatta med Polo</strong> <small>(Polos nya AI-assistent)</small></div><button class="chat-close" id="chat-close" type="button" aria-label="Stäng chatten">×</button></div>
       <div class="messages" id="messages" role="log" aria-label="Chattmeddelanden" aria-live="polite">
         <div class="message">Tjena! Polo här, berätta gärna hur vi kan hjälpa dig.</div>
       </div>
+      <button class="callback-open" id="callback-open" type="button">Lämna nummer för återuppringning</button>
+      <button class="callback-open" id="test-time-open" type="button">Välj en testtid (valfritt)</button>
       <form class="chat-form" id="chat-form">
         <input id="chat-input" type="text" maxlength="500" placeholder="Skriv ett meddelande..." aria-label="Ditt meddelande" autocomplete="off" required>
         <button type="submit" aria-label="Skicka meddelande"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
       </form>
+      <p class="chat-credit">Utvecklad för Polo, av Polo · <a href="https://pologosai.se" target="_blank" rel="noopener noreferrer">PologosAI.se</a></p>
     </div>
   </div>
 
   <script>
-    // Chattens gränssnitt är fristående från en eventuell framtida bokningsintegration.
     const toggle = document.getElementById('chat-toggle');
     const chatBody = document.getElementById('chat-body');
     const messages = document.getElementById('messages');
@@ -454,14 +480,108 @@
     const submitButton = form.querySelector('button');
     let history = [];
     let pending = false;
+    let callbackPending = false;
+    let callbackReceived = false;
+    let callbackDisclosureShown = false;
+    let responseCount = 0;
+    let chatEnded = false;
     let chatTrigger = toggle;
+    let callbackRequestId = null;
+    let chatCallbackAttempt = null;
+    const callbackForm = document.createElement('form');
+    callbackForm.className = 'callback-card';
+    callbackForm.innerHTML = `
+      <p>Vi testar bokningen och uppskattar din hjälp! Ingen servicetid bokas. Lämna ditt nummer så ringer vi upp och kommer överens om en tid.</p>
+      <p>Du kan välja valfri dag och tid som test, men det går lika bra att lämna dem tomma.</p>
+      <label>Telefonnummer<input name="phone" type="tel" autocomplete="tel" maxlength="25" required></label>
+      <label>Testdatum och tid (valfritt)<input name="testTime" type="datetime-local"></label>
+      <button type="submit">Skicka för återuppringning</button>
+      <p class="callback-status" role="status"></p>`;
+
+    function showCallbackDisclosure() {
+      if (callbackDisclosureShown) return;
+      const notice = document.createElement('p');
+      notice.className = 'callback-card';
+      notice.setAttribute('role', 'status');
+      notice.textContent = 'Vi testar bokningen och uppskattar din hjälp! Ingen servicetid bokas. Skriv gärna ditt telefonnummer och valfritt namn här, så ringer vi upp och kommer överens om en tid.';
+      messages.appendChild(notice);
+      callbackDisclosureShown = true;
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function showCallbackForm() {
+      showCallbackDisclosure();
+      if (!callbackForm.isConnected) messages.appendChild(callbackForm);
+      messages.scrollTop = messages.scrollHeight;
+      callbackForm.elements.phone.focus({ preventScroll: true });
+    }
+
+    callbackForm.addEventListener('input', () => { callbackRequestId = null; });
+    callbackForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = callbackForm.querySelector('button');
+      const status = callbackForm.querySelector('.callback-status');
+      if (button.disabled || pending) return;
+      callbackRequestId ||= crypto.randomUUID();
+      callbackPending = true;
+      button.disabled = true;
+      submitButton.disabled = true;
+      callbackForm.elements.phone.readOnly = true;
+      callbackForm.elements.testTime.readOnly = true;
+      status.textContent = 'Skickar…';
+      let errorMessage = 'Vi kunde inte bekräfta förfrågan. Försök igen eller ring/sms:a 0738-99 79 33.';
+      try {
+        const response = await fetch('/api/callback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            requestId: callbackRequestId,
+            phone: callbackForm.elements.phone.value.trim(),
+            testTime: callbackForm.elements.testTime.value
+          })
+        });
+        const data = await response.json();
+        if (!response.ok || data.ok !== true) {
+          if (typeof data.error === 'string') errorMessage = data.error;
+          throw new Error('Återuppringning kunde inte bekräftas.');
+        }
+        const confirmation = 'Tack! Vi har fått ditt nummer och ringer upp för att komma överens om en tid. Ingen servicetid är bokad ännu.';
+        const confirmationStatus = document.createElement('p');
+        confirmationStatus.className = 'callback-card';
+        confirmationStatus.setAttribute('role', 'status');
+        confirmationStatus.textContent = confirmation;
+        callbackForm.replaceWith(confirmationStatus);
+        callbackForm.reset();
+        status.textContent = '';
+        callbackRequestId = null;
+        callbackReceived = true;
+        history = [...history, { role: 'user', text: 'Jag har skickat en begäran om återuppringning.' }, { role: 'model', text: confirmation }];
+      } catch (error) {
+        console.error('Återuppringning kunde inte bekräftas:', error.name);
+        status.textContent = errorMessage;
+      } finally {
+        callbackPending = false;
+        button.disabled = false;
+        submitButton.disabled = chatEnded || pending;
+        callbackForm.elements.phone.readOnly = false;
+        callbackForm.elements.testTime.readOnly = false;
+      }
+    });
+    document.getElementById('callback-open').addEventListener('click', () => {
+      if (chatEnded) showCallbackForm();
+      else {
+        showCallbackDisclosure();
+        input.focus({ preventScroll: true });
+      }
+    });
+    document.getElementById('test-time-open').addEventListener('click', showCallbackForm);
 
     function setChatOpen(open) {
       chatBody.hidden = !open;
       chatBody.parentElement.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.querySelector('.chat-title span').textContent = open ? 'Demoversion · chatten är öppen' : 'Demoversion · öppna chatten';
-      if (open) input.focus({ preventScroll: true });
+      toggle.querySelector('.chat-title span').textContent = open ? 'Chatten är öppen' : 'Öppna chatten';
+      if (open) (chatEnded ? closeChat : input).focus({ preventScroll: true });
       else chatTrigger.focus({ preventScroll: true });
     }
 
@@ -476,11 +596,12 @@
 
     async function sendMessage(text) {
       const trimmed = text.trim();
-      if (!trimmed || pending) return;
-      pending = true;
-      submitButton.disabled = true;
+      if (!trimmed || pending || callbackPending || chatEnded) return;
       addMessage(trimmed, true);
       input.value = '';
+      pending = true;
+      submitButton.disabled = true;
+      callbackForm.querySelector('button').disabled = true;
       const status = addMessage('Polo tänker…', false);
       const nextHistory = [...history.slice(-10), { role: 'user', text: trimmed }];
       let errorMessage = 'Polo kunde inte nås just nu. Försök igen om en stund.';
@@ -489,7 +610,7 @@
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: nextHistory })
+          body: JSON.stringify({ messages: nextHistory, responseCount, callbackReceived, callbackDisclosureShown })
         });
         const data = await response.json();
         if (!response.ok) {
@@ -499,15 +620,51 @@
         if (typeof data.reply !== 'string' || !data.reply.trim()) {
           throw new Error('Chattservern returnerade ett ogiltigt svar.');
         }
-        status.textContent = data.reply;
-        history = [...nextHistory, { role: 'model', text: data.reply }];
+        let reply = data.reply;
+        if (data.callback && !callbackReceived && callbackDisclosureShown) {
+          const { phone, name } = data.callback;
+          if (typeof phone !== 'string' || typeof name !== 'string') {
+            throw new Error('Ogiltiga kontaktuppgifter från chattservern.');
+          }
+          const details = JSON.stringify({ phone, name, testTime: '' });
+          if (!chatCallbackAttempt || chatCallbackAttempt.details !== details) {
+            chatCallbackAttempt = { details, requestId: crypto.randomUUID() };
+          }
+          errorMessage = 'Vi kunde inte bekräfta att ditt nummer sparades. Försök igen eller ring/sms:a 0738-99 79 33.';
+          const savedResponse = await fetch('/api/callback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ requestId: chatCallbackAttempt.requestId, phone, name, testTime: '' })
+          });
+          const savedData = await savedResponse.json();
+          if (!savedResponse.ok || savedData.ok !== true) {
+            if (typeof savedData.error === 'string') errorMessage = savedData.error;
+            throw new Error('Återuppringning kunde inte bekräftas.');
+          }
+          callbackReceived = true;
+          reply = 'Tack! Vi har fått ditt nummer och ringer upp för att komma överens om en tid. Ingen servicetid är bokad ännu.';
+        } else if (data.callback && !callbackDisclosureShown) {
+          reply = 'Jag hjälper gärna till! Läs gärna informationen nedan och skriv sedan ditt nummer igen om du vill bli uppringd.';
+        }
+        responseCount++;
+        if (responseCount === 13) {
+          reply += callbackReceived ? ' Tack för pratstunden och ha det fint!' :
+            ' Tack för pratstunden! Ring eller sms:a 0738-99 79 33 om du vill att vi hör av oss. Ha det fint!';
+          chatEnded = true;
+          input.disabled = true;
+          input.placeholder = 'Chatten är avslutad';
+        }
+        status.textContent = reply;
+        history = [...nextHistory, { role: 'model', text: reply }];
+        if (!callbackReceived && (data.showCallback === true || data.callback || responseCount >= 10)) showCallbackDisclosure();
       } catch (error) {
         console.error('Chattfel:', error);
         status.textContent = errorMessage;
         if (!input.value) input.value = trimmed;
       } finally {
         pending = false;
-        submitButton.disabled = false;
+        submitButton.disabled = chatEnded || callbackPending;
+        callbackForm.querySelector('button').disabled = callbackPending;
         messages.scrollTop = messages.scrollHeight;
       }
     }
@@ -526,22 +683,14 @@
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       sendMessage(input.value);
-      input.focus();
-    });
-
-    document.querySelectorAll('[data-open-chat]').forEach((link) => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        chatTrigger = link;
-        setChatOpen(true);
-      });
+      if (!chatEnded) input.focus();
     });
 
     document.querySelector('[data-book]').addEventListener('click', (event) => {
       event.preventDefault();
       chatTrigger = event.currentTarget;
       setChatOpen(true);
-      sendMessage('Hej! Jag skulle vilja boka tid för en service');
+      showCallbackDisclosure();
     });
   </script>
 </body>
