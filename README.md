@@ -17,11 +17,11 @@ Standardmodellen är `gemini-3-flash-preview` via det globala Vertex AI-endpoint
 
 Den automatiska hälsningen finns i `index.html` och återges även i instruktionerna i `lib/polo-knowledge.mjs`, så ändra båda om hälsningen ska ändras. Spara filerna och pusha ändringarna till GitHub för att publicera dem via Vercel.
 
-Samtalshistoriken hålls i webbläsaren medan sidan är öppen och de senaste meddelandena skickas med varje fråga. Konversationerna sparas inte av applikationen. Efter tio svar från Polo (utöver den automatiska hälsningen) fokuserar chatten på återuppringning och avslutas senast vid svar tretton. Formuläret kan fortfarande skickas efter avslutet. En omladdning startar en ny chatt.
+Samtalshistoriken hålls i webbläsaren medan sidan är öppen och de senaste meddelandena skickas med varje fråga. Konversationerna sparas inte av applikationen. Efter tio svar från Polo (utöver den automatiska hälsningen) fokuserar chatten på återuppringning och avslutas senast vid svar tretton. En omladdning startar en ny chatt.
 
 ## Återuppringning
 
-Kunden får information om att systemet testas och att ingen servicetid bokas, och kan därefter skriva sitt telefonnummer och eventuellt namn i chatten. Det finns också ett valfritt formulär där kunden kan välja en testtid. Utan vald tid letar funktionen efter en ledig intern timme tisdag–lördag kl. 11–16 i kalenderns tidszon Europe/Stockholm.
+Kunden får information om att systemet testas och att ingen servicetid bokas, och kan därefter skriva sitt telefonnummer och eventuellt namn direkt i chatten. Funktionen letar efter en ledig intern timme tisdag–lördag kl. 11–16 i kalenderns tidszon Europe/Stockholm.
 
 1. Skapa en Firestore-databas i Native mode och dela kalendern med kalenderns tjänstkonto med rättighet att ändra händelser.
 2. Ge samma tjänstkonto rätt att läsa och skriva Firestore-data och skriva Cloud Logging-loggar. Rollen Cloud Datastore User ger tillgång till projektets Firestore-data och Logs Writer tillåter loggskrivning.

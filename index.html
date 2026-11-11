@@ -297,14 +297,7 @@
     .chat-close:hover{background:#d7cfc0}
     .chat-body .messages{flex:1 1 0;min-height:0;height:auto;overscroll-behavior:contain}
     .chat-body .message{flex-shrink:0}
-    .callback-open{align-self:flex-start;margin:0 24px;color:#97430f;background:none;border:0;padding:4px 0;text-decoration:underline;text-underline-offset:3px;font-size:12px}
     .callback-card{flex-shrink:0;display:grid;gap:10px;padding:14px;background:#fffdfa;border:1px solid #d6d1c5;border-radius:8px;font-size:13px;line-height:1.5}
-    .callback-card p{margin:0}
-    .callback-card label{display:grid;gap:4px;font-weight:600}
-    .callback-card input{width:100%;min-width:0;padding:9px;border:1px solid #aaa59a;border-radius:4px;background:white;color:#24241f;font:inherit}
-    .callback-card button{padding:10px;border:0;border-radius:4px;background:var(--orange);color:#171916;font-weight:700}
-    .callback-card button:disabled{opacity:.55;cursor:wait}
-    .callback-status{color:#8b341e}
     .chat-form{flex-shrink:0;padding-bottom:6px}
     .chat-credit{flex-shrink:0;padding:0 24px 14px;color:#62635b;font-size:11px;line-height:1.4}
     .chat-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
@@ -460,8 +453,6 @@
       <div class="messages" id="messages" role="log" aria-label="Chattmeddelanden" aria-live="polite">
         <div class="message">Tjena! Polo här, berätta gärna hur vi kan hjälpa dig.</div>
       </div>
-      <button class="callback-open" id="callback-open" type="button">Lämna nummer för återuppringning</button>
-      <button class="callback-open" id="test-time-open" type="button">Välj en testtid (valfritt)</button>
       <form class="chat-form" id="chat-form">
         <input id="chat-input" type="text" maxlength="500" placeholder="Skriv ett meddelande..." aria-label="Ditt meddelande" autocomplete="off" required>
         <button type="submit" aria-label="Skicka meddelande"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
@@ -480,23 +471,12 @@
     const submitButton = form.querySelector('button');
     let history = [];
     let pending = false;
-    let callbackPending = false;
     let callbackReceived = false;
     let callbackDisclosureShown = false;
     let responseCount = 0;
     let chatEnded = false;
     let chatTrigger = toggle;
-    let callbackRequestId = null;
     let chatCallbackAttempt = null;
-    const callbackForm = document.createElement('form');
-    callbackForm.className = 'callback-card';
-    callbackForm.innerHTML = `
-      <p>Vi testar bokningen och uppskattar din hjälp! Ingen servicetid bokas. Lämna ditt nummer så ringer vi upp och kommer överens om en tid.</p>
-      <p>Du kan välja valfri dag och tid som test, men det går lika bra att lämna dem tomma.</p>
-      <label>Telefonnummer<input name="phone" type="tel" autocomplete="tel" maxlength="25" required></label>
-      <label>Testdatum och tid (valfritt)<input name="testTime" type="datetime-local"></label>
-      <button type="submit">Skicka för återuppringning</button>
-      <p class="callback-status" role="status"></p>`;
 
     function showCallbackDisclosure() {
       if (callbackDisclosureShown) return;
@@ -508,73 +488,6 @@
       callbackDisclosureShown = true;
       messages.scrollTop = messages.scrollHeight;
     }
-
-    function showCallbackForm() {
-      showCallbackDisclosure();
-      if (!callbackForm.isConnected) messages.appendChild(callbackForm);
-      messages.scrollTop = messages.scrollHeight;
-      callbackForm.elements.phone.focus({ preventScroll: true });
-    }
-
-    callbackForm.addEventListener('input', () => { callbackRequestId = null; });
-    callbackForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const button = callbackForm.querySelector('button');
-      const status = callbackForm.querySelector('.callback-status');
-      if (button.disabled || pending) return;
-      callbackRequestId ||= crypto.randomUUID();
-      callbackPending = true;
-      button.disabled = true;
-      submitButton.disabled = true;
-      callbackForm.elements.phone.readOnly = true;
-      callbackForm.elements.testTime.readOnly = true;
-      status.textContent = 'Skickar…';
-      let errorMessage = 'Vi kunde inte bekräfta förfrågan. Försök igen eller ring/sms:a 0738-99 79 33.';
-      try {
-        const response = await fetch('/api/callback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            requestId: callbackRequestId,
-            phone: callbackForm.elements.phone.value.trim(),
-            testTime: callbackForm.elements.testTime.value
-          })
-        });
-        const data = await response.json();
-        if (!response.ok || data.ok !== true) {
-          if (typeof data.error === 'string') errorMessage = data.error;
-          throw new Error('Återuppringning kunde inte bekräftas.');
-        }
-        const confirmation = 'Tack! Vi har fått ditt nummer och ringer upp för att komma överens om en tid. Ingen servicetid är bokad ännu.';
-        const confirmationStatus = document.createElement('p');
-        confirmationStatus.className = 'callback-card';
-        confirmationStatus.setAttribute('role', 'status');
-        confirmationStatus.textContent = confirmation;
-        callbackForm.replaceWith(confirmationStatus);
-        callbackForm.reset();
-        status.textContent = '';
-        callbackRequestId = null;
-        callbackReceived = true;
-        history = [...history, { role: 'user', text: 'Jag har skickat en begäran om återuppringning.' }, { role: 'model', text: confirmation }];
-      } catch (error) {
-        console.error('Återuppringning kunde inte bekräftas:', error.name);
-        status.textContent = errorMessage;
-      } finally {
-        callbackPending = false;
-        button.disabled = false;
-        submitButton.disabled = chatEnded || pending;
-        callbackForm.elements.phone.readOnly = false;
-        callbackForm.elements.testTime.readOnly = false;
-      }
-    });
-    document.getElementById('callback-open').addEventListener('click', () => {
-      if (chatEnded) showCallbackForm();
-      else {
-        showCallbackDisclosure();
-        input.focus({ preventScroll: true });
-      }
-    });
-    document.getElementById('test-time-open').addEventListener('click', showCallbackForm);
 
     function setChatOpen(open) {
       chatBody.hidden = !open;
@@ -596,12 +509,11 @@
 
     async function sendMessage(text) {
       const trimmed = text.trim();
-      if (!trimmed || pending || callbackPending || chatEnded) return;
+      if (!trimmed || pending || chatEnded) return;
       addMessage(trimmed, true);
       input.value = '';
       pending = true;
       submitButton.disabled = true;
-      callbackForm.querySelector('button').disabled = true;
       const status = addMessage('Polo tänker…', false);
       const nextHistory = [...history.slice(-10), { role: 'user', text: trimmed }];
       let errorMessage = 'Polo kunde inte nås just nu. Försök igen om en stund.';
@@ -663,8 +575,7 @@
         if (!input.value) input.value = trimmed;
       } finally {
         pending = false;
-        submitButton.disabled = chatEnded || callbackPending;
-        callbackForm.querySelector('button').disabled = callbackPending;
+        submitButton.disabled = chatEnded;
         messages.scrollTop = messages.scrollHeight;
       }
     }
