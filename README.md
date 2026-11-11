@@ -11,4 +11,10 @@ Sidan är en statisk webbplats med en AI-chatt i demonstrationssyfte. Chatten an
 
 Standardmodellen är `gemini-3-flash-preview` via det globala Vertex AI-endpointet. Den kan ändras med miljövariabeln `VERTEX_MODEL` till en modell som stöder globalt endpoint och tankenivån `LOW`. Google Cloud-krediter kan ha olika villkor; kontrollera att dina krediter gäller för tjänsten.
 
-Ändra informationen och tonen som Polo utgår från i `lib/polo-knowledge.mjs`. Samtalshistoriken hålls i webbläsaren medan sidan är öppen och skickas med varje fråga; inga bokningar eller konversationer sparas av applikationen.
+## Anpassa Polo
+
+Ändra verksamhetens information, Polos ton och reglerna för svar i `lib/polo-knowledge.mjs`. Texten skickas som instruktioner vid varje anrop; modellen tränas inte om och lär sig inte automatiskt av samtalen. Ta bort eller ändra befintliga begränsningar när förutsättningarna ändras, till exempel när priser eller bokning är fastställda.
+
+Den automatiska hälsningen finns i `index.html` och återges även i instruktionerna i `lib/polo-knowledge.mjs`, så ändra båda om hälsningen ska ändras. Spara filerna och pusha ändringarna till GitHub för att publicera dem via Vercel.
+
+Samtalshistoriken hålls i webbläsaren medan sidan är öppen och de senaste meddelandena skickas med varje fråga; inga bokningar eller konversationer sparas av applikationen.
