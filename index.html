@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171916">
+  <meta name="description" content="Polos Rullande Cykelverkstad erbjuder cykelservice på plats och från verkstaden i Helsingborg.">
+  <title>Polos Rullande Cykelverkstad | Cykelservice i Helsingborg</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#171916;--panel:#20221e;--cream:#f3f0e7;--muted:#a9aaa0;--orange:#f28b45;--line:rgba(243,240,231,.14)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--cream);font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--orange);outline-offset:4px}
+    [hidden]{display:none!important}
+    .wrap{width:min(100% - 64px,1280px);margin-inline:auto}
+    .header{height:92px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:24px}
+    .brand{display:inline-flex;align-items:center;gap:12px;flex-shrink:0}
+    .brand-mark{width:42px;height:42px;color:var(--orange)}
+    .brand-name{font-family:Manrope,sans-serif;font-size:15px;line-height:1.15;font-weight:800;letter-spacing:-.04em}
+    .brand-name span{display:block;color:var(--muted);font-family:"DM Sans",sans-serif;font-size:10px;font-weight:500;letter-spacing:.11em;text-transform:uppercase;margin-top:5px}
+    .nav{display:flex;align-items:center;gap:34px;color:#c7c8bf;font-size:13px;font-weight:600}
+    .nav a:hover,.text-link:hover{color:var(--orange)}
+    .nav-cta{border:1px solid #65675e;padding:12px 17px;border-radius:4px;color:var(--cream)!important}
+    .nav-cta:hover{border-color:var(--orange)}
+    .hero{position:relative;min-height:665px;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden}
+    .hero-copy{position:relative;z-index:2;padding:80px 0 90px}
+    .eyebrow{display:flex;align-items:center;gap:10px;color:var(--orange);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+    .eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
+    h1,h2,h3,p{margin:0}
+    h1,h2,h3{font-family:Manrope,sans-serif}
+    .hero h1{max-width:680px;margin-top:25px;font-size:clamp(46px,4.7vw,65px);line-height:1.08;letter-spacing:-.065em;font-weight:700}
+    h1 em{color:var(--orange);font-style:normal}
+    .hero-description{max-width:440px;margin-top:25px;color:#b8bab0;font-size:16px;line-height:1.75}
+    .hero-actions{display:flex;align-items:center;gap:25px;margin-top:34px;flex-wrap:wrap}
+    .button-primary{display:inline-flex;align-items:center;justify-content:center;gap:24px;background:var(--orange);border:1px solid var(--orange);border-radius:4px;color:#171916;padding:16px 21px;font-weight:700;font-size:13px;transition:background .2s,transform .2s}
+    .button-primary:hover{background:#ffab70;transform:translateY(-2px)}
+    .button-primary svg,.text-link svg{width:16px;height:16px}
+    .text-link{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;transition:color .2s}
+    .hero-art{position:absolute;right:-4%;top:50%;width:58%;transform:translateY(-48%);pointer-events:none}
+    .hero-art svg{display:block;width:100%;height:auto}
+    .hero-index{position:absolute;bottom:32px;right:0;color:#7e8176;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+    .hero-index span{color:var(--orange)}
+    .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .strip-inner{min-height:88px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .strip-item{display:flex;align-items:center;gap:12px;color:#cdcec4;font-size:12px;font-weight:600}
+    .strip-item svg{width:19px;height:19px;color:var(--orange);flex:none}
+    .strip-note{color:#777b70;font-size:10px;text-transform:uppercase;letter-spacing:.14em}
+    .section{padding:125px 0}
+    .section-heading{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:50px}
+    .section-heading h2,.contact-title{margin-top:18px;font-size:clamp(35px,4vw,54px);line-height:1.1;letter-spacing:-.055em;font-weight:700}
+    .section-intro{max-width:330px;color:var(--muted);line-height:1.75;font-size:14px}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .service-card{min-height:270px;padding:31px;background:var(--bg);display:flex;flex-direction:column;transition:background .2s}
+    .service-card:hover{background:#20221e}
+    .service-top{display:flex;align-items:flex-start;justify-content:space-between;color:var(--orange)}
+    .service-icon{width:36px;height:36px;stroke-width:1.3}
+    .service-number{color:#777b70;font-size:10px;letter-spacing:.1em}
+    .service-card h3{margin-top:auto;padding-top:45px;font-size:19px;letter-spacing:-.04em}
+    .service-card p{max-width:300px;margin-top:12px;color:var(--muted);font-size:13px;line-height:1.7}
+    .booking{background:#22241f;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .booking-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:80px}
+    .booking-copy h2{max-width:530px;margin-top:18px;font-size:clamp(37px,4.2vw,58px);line-height:1.1;letter-spacing:-.055em}
+    .booking-copy>p{max-width:420px;color:var(--muted);line-height:1.8;font-size:15px;margin-top:22px}
+    .booking-detail{display:flex;align-items:center;gap:13px;margin-top:33px;color:#d4d5cb;font-size:13px}
+    .booking-detail .dot{width:8px;height:8px;background:var(--orange);border-radius:50%;box-shadow:0 0 0 5px rgba(242,139,69,.12)}
+    .chat-shell{background:#181a17;border:1px solid #45483f;border-radius:8px;box-shadow:0 25px 70px rgba(0,0,0,.2);overflow:hidden}
+    .chat-header{width:100%;border:0;background:transparent;color:inherit;text-align:left;display:flex;align-items:center;gap:13px;padding:20px}
+    .chat-avatar{width:42px;height:42px;display:grid;place-items:center;flex:none;border-radius:50%;background:#3a2a20;color:var(--orange)}
+    .chat-avatar svg{width:23px;height:23px}
+    .chat-title{flex:1;min-width:0}
+    .chat-title strong{display:block;font-size:13px}
+    .chat-title span{display:block;color:#a6a99d;font-size:11px;margin-top:5px}
+    .chat-toggle-icon{color:#aaa;transition:transform .2s}
+    .chat-header[aria-expanded="true"] .chat-toggle-icon{transform:rotate(180deg)}
+    .chat-body{border-top:1px solid var(--line)}
+    .chat-notice{margin:16px 20px 0;color:#babbb0;font-size:11px;line-height:1.5}
+    .messages{height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:20px}
+    .message{max-width:85%;padding:12px 14px;border-radius:3px 12px 12px 12px;background:#30332d;color:#e4e5db;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+    .message.user{align-self:flex-end;background:#e9955d;color:#211b16;border-radius:12px 3px 12px 12px}
+    .chat-form{display:flex;gap:10px;padding:15px 20px 20px}
+    .chat-form input{min-width:0;flex:1;background:#252822;border:1px solid #45483f;border-radius:4px;color:var(--cream);padding:12px;font-size:12px}
+    .chat-form input::placeholder{color:#95998d}
+    .chat-form button{width:44px;background:var(--orange);color:#171916;border:0;border-radius:4px;display:grid;place-items:center}
+    .chat-form button:hover{background:#ffab70}
+    .chat-form button svg{width:18px;height:18px}
+    .chat-footnote{margin:12px 2px 0;color:#a9aaa0;font-size:11px;line-height:1.6}
+    .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px}
+    .contact-copy{color:var(--muted);max-width:380px;margin-top:20px;font-size:15px;line-height:1.8}
+    .contact-list{border-top:1px solid var(--line)}
+    .contact-row{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.6}
+    .contact-row dt{color:#92958a;font-size:12px}
+    .contact-row dd{margin:0}
+    .contact-row a:hover{color:var(--orange)}
+    .contact-row small{display:block;color:#a9aaa0;font-size:11px;margin-top:3px}
+    .footer{border-top:1px solid var(--line)}
+    .footer-inner{min-height:100px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#9da095;font-size:11px}
+    .footer-brand{color:#e4e5dc;font-weight:700;font-size:12px}
+    .footer a:hover{color:var(--orange)}
+    @media(max-width:900px){
+      .hero{min-height:600px}.hero-art{right:-15%;width:68%;opacity:.65}.hero-copy{max-width:570px}.booking-grid,.contact-grid{gap:45px}
+    }
+    @media(max-width:640px){
+      .wrap{width:min(100% - 36px,1280px)}.header{height:auto;flex-wrap:wrap;gap:12px;padding:15px 0}.brand-name{font-size:13px}.brand-mark{width:36px;height:36px}.nav{width:100%;justify-content:space-between;gap:14px;font-size:12px}.nav-cta{padding:9px 12px}
+      .hero{display:block;min-height:0}.hero-copy{padding:69px 0 315px}.hero h1{font-size:clamp(43px,11vw,60px)}.hero-description{font-size:15px}.hero-art{width:115%;right:-17%;top:auto;bottom:4px;transform:none;opacity:.85}.hero-index{bottom:20px;font-size:9px}
+      .strip-inner{padding:20px 0;min-height:0;flex-wrap:wrap;gap:16px}.strip-item{font-size:11px}.strip-note{display:none}
+      .section{padding:82px 0}.section-heading{display:block;margin-bottom:32px}.section-intro{margin-top:20px}.services{grid-template-columns:1fr}.service-card{min-height:205px;padding:25px}.service-card h3{padding-top:32px}
+      .booking-grid,.contact-grid{grid-template-columns:1fr;gap:35px}.booking-copy h2{font-size:40px}.contact-row{grid-template-columns:100px 1fr}.footer-inner{padding:25px 0;align-items:flex-start;flex-direction:column}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+  </style>
+  <style>
+    /* En fotografisk, redaktionell form med generös typografi och varma kontraster. */
+    :root{--bg:#141411;--cream:#f6f2e9;--orange:#f8893e;--muted:#c1bfb5;--line:rgba(255,255,255,.17)}
+    body{background:#141411;color:var(--cream)}
+    .wrap{width:min(100% - 96px,1360px)}
+    .header{height:94px;border:0}
+    .brand-mark{width:37px;height:37px}
+    .brand-name{font-size:17px;letter-spacing:-.03em}
+    .brand-name span{font-size:11px;letter-spacing:.07em;color:#d0cbc0}
+    .nav{gap:38px;font-size:15px;color:#e5e0d6}
+    .nav-cta{padding:13px 20px;border-color:#aaa49a;border-radius:100px}
+    .hero{width:100%;max-width:none;min-height:min(760px,calc(100svh - 94px));display:flex;align-items:center;background:#262821 url("img/20240511_202811.jpg") center 48% / cover no-repeat;isolation:isolate}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(15,17,14,.91) 0%,rgba(15,17,14,.82) 33%,rgba(15,17,14,.38) 67%,rgba(15,17,14,.18) 100%),linear-gradient(0deg,rgba(15,17,14,.55),transparent 40%)}
+    .hero-copy{width:min(100% - 96px,1360px);max-width:1360px;margin:auto;padding:100px 0 125px}
+    .eyebrow{font-size:12px;letter-spacing:.14em;color:#ffa568}
+    .hero h1{max-width:760px;margin-top:27px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(62px,7vw,100px);font-weight:400;line-height:.98;letter-spacing:-.055em;text-wrap:balance}
+    .hero h1 em{color:#fba36a;font-style:italic}
+    .hero-description{max-width:540px;margin-top:28px;color:#f0ede6;font-size:18px;line-height:1.7}
+    .hero-description strong{display:block;color:white;font-size:20px;font-weight:600;margin-bottom:8px}
+    .hero-actions{margin-top:34px;gap:28px}
+    .button-primary{min-height:56px;padding:16px 25px;border-radius:100px;font-size:15px;gap:40px}
+    .text-link{font-size:15px}
+    .hero-art{display:none}
+    .hero-index{right:48px;bottom:32px;color:#fff;font-size:12px;letter-spacing:.06em;text-shadow:0 1px 5px #111}
+    .strip{background:#1d1d19;border-color:rgba(255,255,255,.1)}
+    .strip-inner{min-height:92px}
+    .strip-item{font-size:15px;color:#e9e5dc}
+    .strip-note{font-size:12px;color:#b8b2a7}
+    .section{padding:135px 0}
+    #tjanster{position:relative;isolation:isolate;color:#24241f}
+    #tjanster::before{content:"";position:absolute;z-index:-1;inset:0 calc((min(100vw - 96px, 1360px) - 100vw)/2);background:#f1eee5}
+    #tjanster .eyebrow{color:#a34817}
+    .section-heading{margin-bottom:56px}
+    .section-heading h2,.contact-title,.booking-copy h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(48px,5.3vw,74px);font-weight:400;line-height:1.05;letter-spacing:-.045em}
+    .section-intro{max-width:370px;color:#595b52;font-size:17px;line-height:1.7}
+    .services{gap:0;background:transparent;border:0;border-top:1px solid #c9c5ba;border-bottom:1px solid #c9c5ba}
+    .service-card{min-height:280px;padding:32px 32px 34px 0;background:transparent}
+    .service-card+.service-card{padding-left:32px;border-left:1px solid #c9c5ba}
+    .service-card:hover{background:transparent}
+    .service-top{color:#c15c22}
+    .service-icon{width:42px;height:42px}
+    .service-number{font-size:12px;color:#77776c}
+    .service-card h3{font-size:23px;letter-spacing:-.03em}
+    .service-card p{max-width:330px;color:#595b52;font-size:16px;line-height:1.65}
+    .story{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,7vw,110px);margin-top:100px}
+    .story-image{min-height:440px;background:#3f4339 url("img/20250520_214107.jpg") center / cover no-repeat}
+    .story-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:30px 0}
+    .story-copy h2{max-width:560px;margin-top:25px;font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.04em;font-size:clamp(43px,4.5vw,67px);line-height:1.05}
+    .story-copy p{max-width:480px;margin-top:23px;color:#595b52;font-size:17px;line-height:1.8}
+    .story-copy .text-link{margin-top:30px;color:#a34817}
+    .booking{background:#191a17;border:0}
+    .booking-grid{grid-template-columns:1fr 1fr;gap:100px}
+    .booking-copy h2{max-width:600px}
+    .booking-copy>p{max-width:470px;color:#d0cec3;font-size:17px}
+    .booking-detail{font-size:15px}
+    .chat-shell{background:#f4f0e7;color:#24241f;border:0;border-radius:14px;box-shadow:0 25px 80px rgba(0,0,0,.24)}
+    .chat-header{padding:24px}
+    .chat-avatar{width:50px;height:50px;background:#f8dfce;color:#a84e1b}
+    .chat-title strong{font-size:16px}
+    .chat-title span{color:#64645b;font-size:13px}
+    .chat-toggle-icon{color:#484941}
+    .chat-body{border-color:#d6d1c5}
+    .chat-notice{margin:18px 24px 0;color:#62635b;font-size:13px}
+    .messages{height:260px;padding:24px}
+    .message{background:#e2ded3;color:#30312c;font-size:15px;line-height:1.6}
+    .message.user{background:#edb18a;color:#241a14}
+    .chat-form{padding:12px 24px 24px}
+    .chat-form input{background:#fffdfa;border-color:#c8c3b9;color:#24241f;font-size:15px}
+    .chat-form input::placeholder{color:#6b6b62}
+    .chat-form button{width:50px}
+    .chat-footnote{font-size:14px;margin-top:17px;color:#d0cec3}
+    .chat-footnote .text-link{font-size:14px;color:#ffa568}
+    .contact-grid{gap:100px}
+    .contact-copy{font-size:17px;color:#d0cec3}
+    .contact-row{grid-template-columns:150px 1fr;font-size:16px}
+    .contact-row dt{font-size:14px;color:#bcb9ae}
+    .contact-row small{font-size:13px;color:#bcb9ae}
+    .footer-inner{font-size:13px;color:#bcb9ae}
+    .footer-brand{font-size:14px}
+    @media(max-width:900px){
+      .hero{min-height:690px}
+      .hero-copy{width:min(100% - 64px,1360px)}
+      .hero::before{background:linear-gradient(90deg,rgba(15,17,14,.9),rgba(15,17,14,.65) 58%,rgba(15,17,14,.28)),linear-gradient(0deg,rgba(15,17,14,.5),transparent 50%)}
+      .story{grid-template-columns:1fr 1fr}
+      .booking-grid,.contact-grid{gap:48px}
+    }
+    @media(max-width:640px){
+      .wrap{width:calc(100% - 40px)}
+      .header{min-height:112px;padding:16px 0;gap:14px}
+      .brand-mark{width:34px;height:34px}
+      .brand-name{font-size:15px}
+      .nav{font-size:14px;gap:12px}
+      .nav-cta{padding:9px 14px}
+      .hero{width:100%;min-height:690px;background-position:62% center}
+      .hero::before{background:linear-gradient(90deg,rgba(15,17,14,.83),rgba(15,17,14,.52)),linear-gradient(0deg,rgba(15,17,14,.62),transparent 55%)}
+      .hero-copy{width:calc(100% - 40px);padding:90px 0 120px}
+      .hero h1{font-size:clamp(55px,13vw,74px);line-height:1.01}
+      .hero-description{font-size:16px}
+      .hero-description strong{font-size:17px}
+      .hero-index{right:20px;bottom:24px;font-size:11px}
+      .strip-inner{padding:22px 0;gap:18px}
+      .strip-item{font-size:14px}
+      .section{padding:90px 0}
+      #tjanster::before{inset:0 -20px}
+      .section-heading h2,.contact-title,.booking-copy h2{font-size:48px}
+      .section-intro{font-size:16px}
+      .services{grid-template-columns:1fr}
+      .service-card{min-height:0;padding:27px 0}
+      .service-card+.service-card{padding:27px 0;border-left:0;border-top:1px solid #c9c5ba}
+      .service-card h3{padding-top:25px}
+      .story{grid-template-columns:1fr;gap:30px;margin-top:65px}
+      .story-image{min-height:260px}
+      .story-copy{padding:0}
+      .story-copy h2{font-size:48px}
+      .booking-grid,.contact-grid{grid-template-columns:1fr;gap:38px}
+      .contact-row{grid-template-columns:105px 1fr;gap:15px}
+    }
+  </style>
+  <style>
+    /* Kompakt översikt på större skärmar; innehållet får växa vid behov. */
+    @media(min-width:700px){
+      .header{height:72px}
+      .hero{height:auto;min-height:clamp(340px,47vh,460px)}
+      .hero-copy{padding:12px 0 14px}
+      .hero h1{font-size:clamp(46px,4.3vw,60px);margin-top:12px}
+      .hero-description{font-size:16px;line-height:1.45;margin-top:12px}
+      .hero-description strong{font-size:17px}
+      .hero-actions{margin-top:15px}
+      .button-primary{min-height:48px;padding:12px 21px}
+      .hero-index{bottom:19px}
+      .strip-inner{min-height:52px}
+      .section{padding:20px 0}
+      .section-heading{align-items:end;margin-bottom:18px}
+      .section-heading h2{font-size:clamp(32px,3vw,42px);margin-top:8px}
+      .section-intro{font-size:15px;line-height:1.5}
+      .services-layout{display:grid;grid-template-columns:minmax(220px,.9fr) minmax(0,2fr);gap:30px}
+      .services{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .service-card{min-height:0;padding:14px 16px 15px 0}
+      .service-card+.service-card{padding:14px 16px 15px;border-left:1px solid #c9c5ba}
+      .service-icon{width:30px;height:30px}
+      .service-card h3{font-size:18px;padding-top:15px}
+      .service-card p{font-size:14px;line-height:1.5;margin-top:8px}
+      .service-photo{min-height:170px}
+      .closing{display:grid;grid-template-columns:1fr 1fr;gap:clamp(35px,5vw,80px);align-items:start}
+      .closing.wrap{width:min(100% - 96px,1360px)}
+      .booking{background:transparent}
+      .booking-grid{display:block}
+      .booking-grid.wrap,.contact-grid.wrap{width:100%}
+      .booking-copy h2,.contact-title{font-size:clamp(30px,2.5vw,36px);margin-top:8px}
+      .booking-copy>p{font-size:14px;line-height:1.5;margin-top:10px}
+      .booking-detail{display:none}
+      .chat-shell{margin-top:18px}
+      .chat-header{padding:13px 16px}
+      .chat-avatar{width:39px;height:39px}
+      .chat-footnote{font-size:13px;margin-top:9px}
+      .contact-grid{display:block}
+      .contact-copy{font-size:14px;line-height:1.5;margin-top:10px}
+      .contact-list{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;column-gap:20px}
+      .contact-row{display:block;padding:7px 0;font-size:14px;line-height:1.35}
+      .contact-row dt{font-size:12px}
+      .contact-row small{display:none}
+      .footer-inner{min-height:48px}
+    }
+    .service-photo{position:relative;overflow:hidden;background:#d5cfc1 url("img/20250520_214107.jpg") center / cover no-repeat}
+    .service-photo::after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(18,19,16,.82))}
+    .service-photo span{position:absolute;z-index:1;left:20px;bottom:18px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.02em}
+    @media(min-width:700px) and (max-width:1000px){
+      .wrap,.closing.wrap{width:calc(100% - 64px)}
+      #tjanster::before{inset:0 -32px}
+      .services-layout{grid-template-columns:minmax(160px,.8fr) minmax(0,2fr);gap:20px}
+      .service-card h3{font-size:16px}
+      .service-card p{font-size:13px}
+      .section-intro{max-width:260px}
+    }
+    @media(max-width:699px){
+      .service-photo{min-height:240px;margin-bottom:25px}
+      .closing.wrap{width:100%}
+    }
+    /* Logotyp och fristående chattpanel. */
+    .brand-mark{width:40px;height:40px;flex:none}
+    .brand-name{font-family:Manrope,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.025em;white-space:nowrap}
+    .chat-body{position:fixed;z-index:50;right:24px;bottom:24px;width:min(410px,calc(100% - 32px));max-height:calc(100dvh - 32px);display:flex;flex-direction:column;background:#f4f0e7;color:#24241f;border:1px solid #d6d1c5;border-radius:14px;box-shadow:0 18px 70px rgba(0,0,0,.4);overflow:hidden}
+    .chat-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 20px;border-bottom:1px solid #d6d1c5}
+    .chat-panel-heading strong{font-size:15px}
+    .chat-close{width:36px;height:36px;border:0;border-radius:50%;background:#e5e0d6;color:#24241f;font-size:24px;line-height:1}
+    .chat-close:hover{background:#d7cfc0}
+    .chat-body .messages{flex:1;min-height:80px}
+    .chat-form{flex-shrink:0}
+    @media(min-width:700px){
+      .hero{min-height:clamp(420px,57vh,550px)}
+      .hero h1{font-size:clamp(54px,5vw,72px)}
+    }
+    @media(max-width:699px){
+      .brand-name{font-size:clamp(12px,3.8vw,15px)}
+      .chat-body{right:16px;bottom:16px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="wrap header">
+    <a class="brand" href="#top" aria-label="Polos Rullande Cykelverkstad, till startsidan">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="24" cy="24" r="16.5" stroke="currentColor" stroke-opacity=".4" stroke-width=".8"/>
+        <path d="M18 34V14h7.1c4.2 0 6.9 2.4 6.9 6.1s-2.7 6.2-6.9 6.2H18M14 34h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Polos Rullande Cykelverkstad</span>
+    </a>
+    <nav class="nav" aria-label="Huvudmeny">
+      <a href="#tjanster">Tjänster</a>
+      <a href="#boka" class="nav-cta" data-open-chat>Boka / chatta <span aria-hidden="true">↗</span></a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Första intrycket -->
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow">Din cykelmekaniker i Helsingborg</div>
+        <h1 id="hero-title">Flexibel cykelservice<br><em>På dina villkor.</em></h1>
+        <p class="hero-description"><strong>Professionell cykelservice i Helsingborg – på plats eller från verkstaden.</strong> Från vardagshojar och racers till elcyklar och tunga el-cargobikes. Punkteringar, underhåll, service, reparation och restaurering.</p>
+        <div class="hero-actions">
+          <a class="button-primary" href="#boka" data-book>Boka service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a class="text-link" href="#tjanster">Upptäck tjänsterna <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="hero-index">Helsingborg &nbsp; / &nbsp; På väg igen</div>
+    </section>
+
+    <div class="strip">
+      <div class="wrap strip-inner">
+        <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg> Baserad i Mariastaden</div>
+        <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="6" cy="17" r="4"/><circle cx="18" cy="17" r="4"/><path d="m6 17 5-8 4 8H6l6-5h4l2 5M10 9h3m3-3h2"/></svg> Service som kommer till dig</div>
+        <div class="strip-note">Helsingborg, Sverige &nbsp; / &nbsp; 56°03′ N</div>
+      </div>
+    </div>
+
+    <!-- Tjänster -->
+    <section class="wrap section" id="tjanster" aria-labelledby="services-title">
+      <div class="section-heading">
+        <div><div class="eyebrow">Vad jag kan hjälpa till med</div><h2 id="services-title">För alla sorters cyklar.</h2></div>
+        <p class="section-intro">Från den trogna vardagshojen till lite mer avancerade byggen. Varje cykel förtjänar att kännas rätt.</p>
+      </div>
+      <div class="services-layout">
+      <div class="service-photo" role="img" aria-label="Cykelservice på plats i Helsingborg, med cyklar och verktyg"><span>Verkstaden kommer till dig ↗</span></div>
+      <div class="services">
+        <article class="service-card">
+          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="8" cy="23" r="6"/><circle cx="24" cy="23" r="6"/><path d="m8 23 6-10 5 10H8l8-7h5l3 7M12 13h4m4-4h3"/></svg><span class="service-number">01 / 03</span></div>
+          <h3>Standard &amp; vardag</h3><p>Växlar, bromsar, riktning av hjul och klassiskt underhåll.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><rect x="7" y="6" width="18" height="22" rx="3"/><path d="M13 6V3h6v3m-2 5-4 7h4l-2 6 5-8h-4l1-5Z"/></svg><span class="service-number">02 / 03</span></div>
+          <h3>Elcykel &amp; drivlina</h3><p>Diagnostik, batteri- och motorfrågor samt kedjebyten.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-top"><svg class="service-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="7" cy="24" r="4"/><circle cx="25" cy="24" r="4"/><path d="M7 24h9l3-12H9l-2 12Zm12-12h8v8h-9M4 13h5m8-4h4"/></svg><span class="service-number">03 / 03</span></div>
+          <h3>Cargo &amp; special</h3><p>Avancerade reparationer av tunga el-cargobikes och specialbyggen.</p>
+        </article>
+      </div>
+      </div>
+    </section>
+
+    <div class="closing wrap">
+    <!-- Chatten är en lokal demonstration och skickar inga meddelanden. -->
+    <section class="booking section" id="boka" aria-labelledby="booking-title">
+      <div class="wrap booking-grid">
+        <div class="booking-copy">
+          <div class="eyebrow">Enklare än du tror</div>
+          <h2 id="booking-title">Boka här!</h2>
+        </div>
+        <div>
+          <div class="chat-shell">
+            <button type="button" class="chat-header" id="chat-toggle" aria-expanded="false" aria-controls="chat-body">
+              <span class="chat-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3-.6L5 20l1.5-4A7.5 7.5 0 1 1 20 11.5Z"/><path d="M9 11.5h7m-7 3h4"/></svg></span>
+              <span class="chat-title"><strong>Chatta med Polo</strong><span>Demoversion · öppna chatten</span></span>
+              <svg class="chat-toggle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="chat-body" id="chat-body" role="region" aria-label="Chatta med Polo" hidden>
+              <div class="chat-panel-heading"><strong>Chatta med Polo</strong><button class="chat-close" id="chat-close" type="button" aria-label="Stäng chatten">×</button></div>
+              <p class="chat-notice">Det här är en demochatt med automatiska svar. Inga meddelanden skickas och inga bokningar görs här ännu.</p>
+              <div class="messages" id="messages" role="log" aria-label="Chattmeddelanden" aria-live="polite">
+                <div class="message">Hej och välkommen! 👋 Berätta gärna vad du behöver hjälp med. För riktig kontakt, ring eller sms:a 0738-99 79 33.</div>
+              </div>
+              <form class="chat-form" id="chat-form">
+                <input id="chat-input" type="text" maxlength="500" placeholder="Skriv ett meddelande..." aria-label="Ditt meddelande" autocomplete="off" required>
+                <button type="submit" aria-label="Skicka meddelande"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section class="wrap section contact-grid" id="kontakt" aria-labelledby="contact-title">
+      <div>
+        <div class="eyebrow">Nära till hands</div>
+        <h2 class="contact-title" id="contact-title">Vi ses där cykeln finns.</h2>
+        <p class="contact-copy">I Helsingborg, på plats eller från verkstaden.</p>
+      </div>
+      <dl class="contact-list">
+        <div class="contact-row"><dt>Område</dt><dd>Mariastaden, Helsingborg<small>Ambulerande service &amp; verkstad</small></dd></div>
+        <div class="contact-row"><dt>Telefon / sms</dt><dd><a href="tel:+46738997933">0738-99 79 33 ↗</a></dd></div>
+        <div class="contact-row"><dt>Mejl</dt><dd>E-postadress kommer snart</dd></div>
+        <div class="contact-row"><dt>Öppettider</dt><dd>Kontakta mig för aktuella öppettider</dd></div>
+        <div class="contact-row"><dt>Socialt</dt><dd><a href="https://www.facebook.com/PoloCykel" target="_blank" rel="noopener noreferrer">Facebook ↗</a></dd></div>
+      </dl>
+    </section>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner"><span class="footer-brand">Polos Rullande Cykelverkstad</span><span>För att även cyklar behöver kärlek.</span><a href="#top">Tillbaka till toppen ↑</a></div>
+  </footer>
+
+  <script>
+    // Chattens gränssnitt är fristående från en eventuell framtida bokningsintegration.
+    const toggle = document.getElementById('chat-toggle');
+    const chatBody = document.getElementById('chat-body');
+    const messages = document.getElementById('messages');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
+    const closeChat = document.getElementById('chat-close');
+    const replies = [
+      'Tack för ditt meddelande! Det här är en demochatt. Ring eller sms:a 0738-99 79 33 för att få hjälp på riktigt.',
+      'Det låter som något jag gärna hjälper till med! Kontakta mig på 0738-99 79 33 så kan vi prata om din cykel.',
+      'Tack! Chatten är inte kopplad till någon bokning ännu. Ring eller sms:a 0738-99 79 33 så hittar vi en lösning.',
+      'Kul att du hör av dig! För frågor och bokning når du mig på 0738-99 79 33.'
+    ];
+    let replyIndex = 0;
+    let chatTrigger = toggle;
+
+    function setChatOpen(open) {
+      chatBody.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('.chat-title span').textContent = open ? 'Demoversion · chatten är öppen' : 'Demoversion · öppna chatten';
+      if (open) input.focus({ preventScroll: true });
+      else chatTrigger.focus({ preventScroll: true });
+    }
+
+    function addMessage(text, isUser) {
+      const message = document.createElement('div');
+      message.className = isUser ? 'message user' : 'message';
+      message.textContent = text;
+      messages.appendChild(message);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function sendMessage(text) {
+      const trimmed = text.trim();
+      if (!trimmed) return;
+      addMessage(trimmed, true);
+      addMessage(replies[replyIndex % replies.length], false);
+      replyIndex++;
+      input.value = '';
+    }
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      if (open) chatTrigger = toggle;
+      setChatOpen(open);
+    });
+
+    closeChat.addEventListener('click', () => setChatOpen(false));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !chatBody.hidden) setChatOpen(false);
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      sendMessage(input.value);
+      input.focus();
+    });
+
+    document.querySelectorAll('[data-open-chat]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        chatTrigger = link;
+        setChatOpen(true);
+      });
+    });
+
+    document.querySelector('[data-book]').addEventListener('click', (event) => {
+      event.preventDefault();
+      chatTrigger = event.currentTarget;
+      setChatOpen(true);
+      sendMessage('Hej! Jag skulle vilja boka tid för en service');
+    });
+  </script>
+</body>
+</html>
