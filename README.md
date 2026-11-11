@@ -1,13 +1,14 @@
 # Polos Rullande Cykelverkstad
 
-Sidan är en statisk webbplats med en AI-chatt i demonstrationssyfte. Chatten använder en Vercel Function och Googles Gemini via Vertex AI express mode. Den gör inga bokningar.
+Sidan är en statisk webbplats med en AI-chatt i demonstrationssyfte. Chatten använder en Vercel Function och Googles Gemini via Vertex AI i ett Google Cloud-projekt. Den gör inga bokningar.
 
 ## Aktivera chatten
 
-1. Skapa en API-nyckel för [Vertex AI express mode](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview) i ditt Google Cloud-konto.
-2. Lägg till nyckeln som `VERTEX_API_KEY` i Vercel-projektets miljövariabler och gör en ny deployment. Lägg aldrig nyckeln i HTML-filen eller i Git.
-3. För lokal utveckling: lägg `VERTEX_API_KEY` i `.env.local` och kör projektet med `vercel dev`. Att öppna HTML-filen direkt fungerar inte för AI-chatten eftersom serverfunktionen då inte körs.
+1. Aktivera Vertex AI API och fakturering i Google Cloud-projektet. Ge tjänstkontot rollen Vertex AI User / Agent Platform User.
+2. Skapa en JSON-nyckel för tjänstkontot. Om `iam.disableServiceAccountKeyCreation` blockerar skapandet krävs ett policyundantag för projektet; det sänker skyddet för tjänstkontonycklar i projektet.
+3. Lägg hela JSON-innehållet som `GCP_SERVICE_ACCOUNT_KEY` i Vercel-projektets miljövariabler och gör en ny deployment. JSON-nyckeln är en långlivad hemlighet: dela den inte och lägg den aldrig i HTML eller Git.
+4. För lokal utveckling: lägg `GCP_SERVICE_ACCOUNT_KEY` i `.env.local` och kör projektet med `vercel dev`. Att öppna HTML-filen direkt fungerar inte för AI-chatten eftersom serverfunktionen då inte körs.
 
-Standardmodellen är `gemini-3-flash-preview`. Den kan ändras med miljövariabeln `VERTEX_MODEL` till en modell som stöds av Vertex AI express mode och tankenivån `LOW`. Google Cloud-krediter kan ha olika villkor; kontrollera att dina krediter gäller för tjänsten.
+Standardmodellen är `gemini-3-flash-preview` via det globala Vertex AI-endpointet. Den kan ändras med miljövariabeln `VERTEX_MODEL` till en modell som stöder globalt endpoint och tankenivån `LOW`. Google Cloud-krediter kan ha olika villkor; kontrollera att dina krediter gäller för tjänsten.
 
 Ändra informationen och tonen som Polo utgår från i `lib/polo-knowledge.mjs`. Samtalshistoriken hålls i webbläsaren medan sidan är öppen och skickas med varje fråga; inga bokningar eller konversationer sparas av applikationen.
