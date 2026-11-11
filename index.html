@@ -55,8 +55,7 @@
     .strip-note{color:#777b70;font-size:10px;text-transform:uppercase;letter-spacing:.14em}
     .section{padding:125px 0}
     .section-heading{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:50px}
-    .section-heading h2,.contact-title{margin-top:18px;font-size:clamp(35px,4vw,54px);line-height:1.1;letter-spacing:-.055em;font-weight:700}
-    .section-intro{max-width:330px;color:var(--muted);line-height:1.75;font-size:14px}
+    .contact-title{margin-top:18px;font-size:clamp(35px,4vw,54px);line-height:1.1;letter-spacing:-.055em;font-weight:700}
     .services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
     .service-card{min-height:270px;padding:31px;background:var(--bg);display:flex;flex-direction:column;transition:background .2s}
     .service-card:hover{background:#20221e}
@@ -85,11 +84,13 @@
     .messages{height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:20px}
     .message{max-width:85%;padding:12px 14px;border-radius:3px 12px 12px 12px;background:#30332d;color:#e4e5db;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
     .message.user{align-self:flex-end;background:#e9955d;color:#211b16;border-radius:12px 3px 12px 12px}
+    .message{white-space:pre-wrap}
     .chat-form{display:flex;gap:10px;padding:15px 20px 20px}
     .chat-form input{min-width:0;flex:1;background:#252822;border:1px solid #45483f;border-radius:4px;color:var(--cream);padding:12px;font-size:12px}
     .chat-form input::placeholder{color:#95998d}
     .chat-form button{width:44px;background:var(--orange);color:#171916;border:0;border-radius:4px;display:grid;place-items:center}
     .chat-form button:hover{background:#ffab70}
+    .chat-form button:disabled{opacity:.55;cursor:wait}
     .chat-form button svg{width:18px;height:18px}
     .chat-footnote{margin:12px 2px 0;color:#a9aaa0;font-size:11px;line-height:1.6}
     .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px}
@@ -111,7 +112,7 @@
       .wrap{width:min(100% - 36px,1280px)}.header{height:auto;flex-wrap:wrap;gap:12px;padding:15px 0}.brand-name{font-size:13px}.brand-mark{width:36px;height:36px}.nav{width:100%;justify-content:space-between;gap:14px;font-size:12px}.nav-cta{padding:9px 12px}
       .hero{display:block;min-height:0}.hero-copy{padding:69px 0 315px}.hero h1{font-size:clamp(43px,11vw,60px)}.hero-description{font-size:15px}.hero-art{width:115%;right:-17%;top:auto;bottom:4px;transform:none;opacity:.85}.hero-index{bottom:20px;font-size:9px}
       .strip-inner{padding:20px 0;min-height:0;flex-wrap:wrap;gap:16px}.strip-item{font-size:11px}.strip-note{display:none}
-      .section{padding:82px 0}.section-heading{display:block;margin-bottom:32px}.section-intro{margin-top:20px}.services{grid-template-columns:1fr}.service-card{min-height:205px;padding:25px}.service-card h3{padding-top:32px}
+      .section{padding:82px 0}.section-heading{display:block;margin-bottom:32px}.services{grid-template-columns:1fr}.service-card{min-height:205px;padding:25px}.service-card h3{padding-top:32px}
       .booking-grid,.contact-grid{grid-template-columns:1fr;gap:35px}.booking-copy h2{font-size:40px}.contact-row{grid-template-columns:100px 1fr}.footer-inner{padding:25px 0;align-items:flex-start;flex-direction:column}
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
@@ -147,10 +148,9 @@
     .section{padding:135px 0}
     #tjanster{position:relative;isolation:isolate;color:#24241f}
     #tjanster::before{content:"";position:absolute;z-index:-1;inset:0 calc((min(100vw - 96px, 1360px) - 100vw)/2);--fade-stop:max(32px,calc(33.3333vw - 453.333px));background:linear-gradient(to right,transparent,#f1eee5 var(--fade-stop),#f1eee5 calc(100% - var(--fade-stop)),transparent)}
-    #tjanster .eyebrow{color:#a34817}
-    .section-heading{margin-bottom:56px}
-    .section-heading h2,.contact-title,.booking-copy h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(48px,5.3vw,74px);font-weight:400;line-height:1.05;letter-spacing:-.045em}
-    .section-intro{max-width:370px;color:#595b52;font-size:17px;line-height:1.7}
+    #tjanster .eyebrow{color:#a34817;font-family:"DM Sans",sans-serif}
+    .section-heading{margin-bottom:24px}
+    .contact-title,.booking-copy h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(48px,5.3vw,74px);font-weight:400;line-height:1.05;letter-spacing:-.045em}
     .services{gap:0;background:transparent;border:0;border-top:1px solid #c9c5ba;border-bottom:1px solid #c9c5ba}
     .service-card{min-height:280px;padding:32px 32px 34px 0;background:transparent}
     .service-card+.service-card{padding-left:32px;border-left:1px solid #c9c5ba}
@@ -220,8 +220,7 @@
       .strip-item{font-size:14px}
       .section{padding:90px 0}
       #tjanster::before{inset:0 -20px;--fade-stop:13.333px}
-      .section-heading h2,.contact-title,.booking-copy h2{font-size:48px}
-      .section-intro{font-size:16px}
+      .contact-title,.booking-copy h2{font-size:48px}
       .services{grid-template-columns:1fr}
       .service-card{min-height:0;padding:27px 0}
       .service-card+.service-card{padding:27px 0;border-left:0;border-top:1px solid #c9c5ba}
@@ -249,8 +248,6 @@
       .strip-inner{min-height:52px}
       .section{padding:20px 0}
       .section-heading{align-items:end;margin-bottom:18px}
-      .section-heading h2{font-size:clamp(32px,3vw,42px);margin-top:8px}
-      .section-intro{font-size:15px;line-height:1.5}
       .services-layout{display:grid;grid-template-columns:minmax(220px,.9fr) minmax(0,2fr);gap:30px}
       .services{grid-template-columns:repeat(3,minmax(0,1fr))}
       .service-card{min-height:0;padding:14px 16px 15px 0}
@@ -288,7 +285,6 @@
       .services-layout{grid-template-columns:minmax(160px,.8fr) minmax(0,2fr);gap:20px}
       .service-card h3{font-size:16px}
       .service-card p{font-size:13px}
-      .section-intro{max-width:260px}
     }
     @media(max-width:699px){
       .service-photo{min-height:240px;margin-bottom:25px}
@@ -393,8 +389,7 @@
     <!-- Tjänster -->
     <section class="wrap section" id="tjanster" aria-labelledby="services-title">
       <div class="section-heading">
-        <div><div class="eyebrow">Vad jag kan hjälpa till med</div><h2 id="services-title">För alla sorters cyklar.</h2></div>
-        <p class="section-intro">Från den trogna vardagshojen till lite mer avancerade byggen. Varje cykel förtjänar att kännas rätt.</p>
+        <h2 class="eyebrow" id="services-title">Vad jag kan hjälpa till med</h2>
       </div>
       <div class="services-layout">
       <div class="service-photo" role="img" aria-label="Cykelservice på plats i Helsingborg, med cyklar och verktyg"><span>Verkstaden kommer till dig ↗</span></div>
@@ -429,7 +424,6 @@
     </div>
   </footer>
 
-  <!-- Chatten är en lokal demonstration och skickar inga meddelanden. -->
   <div class="chat-shell">
     <button type="button" class="chat-header" id="chat-toggle" aria-expanded="false" aria-controls="chat-body">
       <span class="chat-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3-.6L5 20l1.5-4A7.5 7.5 0 1 1 20 11.5Z"/><path d="M9 11.5h7m-7 3h4"/></svg></span>
@@ -438,7 +432,7 @@
     </button>
     <div class="chat-body" id="chat-body" role="region" aria-label="Chatta med Polo" hidden>
       <div class="chat-panel-heading"><strong>Chatta med Polo</strong><button class="chat-close" id="chat-close" type="button" aria-label="Stäng chatten">×</button></div>
-      <p class="chat-notice">Det här är en demochatt med automatiska svar. Inga meddelanden skickas och inga bokningar görs här ännu.</p>
+      <p class="chat-notice">Polo är en AI-assistent i en demoversion. Meddelanden skickas till Google för att skapa svar. Bokning kan inte göras i chatten ännu.</p>
       <div class="messages" id="messages" role="log" aria-label="Chattmeddelanden" aria-live="polite">
         <div class="message">Hej och välkommen! 👋 Berätta gärna vad du behöver hjälp med. För riktig kontakt, ring eller sms:a 0738-99 79 33.</div>
       </div>
@@ -457,13 +451,9 @@
     const form = document.getElementById('chat-form');
     const input = document.getElementById('chat-input');
     const closeChat = document.getElementById('chat-close');
-    const replies = [
-      'Tack för ditt meddelande! Det här är en demochatt. Ring eller sms:a 0738-99 79 33 för att få hjälp på riktigt.',
-      'Det låter som något jag gärna hjälper till med! Kontakta mig på 0738-99 79 33 så kan vi prata om din cykel.',
-      'Tack! Chatten är inte kopplad till någon bokning ännu. Ring eller sms:a 0738-99 79 33 så hittar vi en lösning.',
-      'Kul att du hör av dig! För frågor och bokning når du mig på 0738-99 79 33.'
-    ];
-    let replyIndex = 0;
+    const submitButton = form.querySelector('button');
+    let history = [];
+    let pending = false;
     let chatTrigger = toggle;
 
     function setChatOpen(open) {
@@ -481,15 +471,45 @@
       message.textContent = text;
       messages.appendChild(message);
       messages.scrollTop = messages.scrollHeight;
+      return message;
     }
 
-    function sendMessage(text) {
+    async function sendMessage(text) {
       const trimmed = text.trim();
-      if (!trimmed) return;
+      if (!trimmed || pending) return;
+      pending = true;
+      submitButton.disabled = true;
       addMessage(trimmed, true);
-      addMessage(replies[replyIndex % replies.length], false);
-      replyIndex++;
       input.value = '';
+      const status = addMessage('Polo tänker…', false);
+      const nextHistory = [...history.slice(-10), { role: 'user', text: trimmed }];
+      let errorMessage = 'Polo kunde inte nås just nu. Försök igen om en stund.';
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: nextHistory })
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          if (typeof data.error === 'string') errorMessage = data.error;
+          throw new Error(`Chattservern svarade med ${response.status}`);
+        }
+        if (typeof data.reply !== 'string' || !data.reply.trim()) {
+          throw new Error('Chattservern returnerade ett ogiltigt svar.');
+        }
+        status.textContent = data.reply;
+        history = [...nextHistory, { role: 'model', text: data.reply }];
+      } catch (error) {
+        console.error('Chattfel:', error);
+        status.textContent = errorMessage;
+        if (!input.value) input.value = trimmed;
+      } finally {
+        pending = false;
+        submitButton.disabled = false;
+        messages.scrollTop = messages.scrollHeight;
+      }
     }
 
     toggle.addEventListener('click', () => {
