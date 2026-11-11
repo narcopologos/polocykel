@@ -146,7 +146,7 @@
     .strip-note{font-size:12px;color:#b8b2a7}
     .section{padding:135px 0}
     #tjanster{position:relative;isolation:isolate;color:#24241f}
-    #tjanster::before{content:"";position:absolute;z-index:-1;inset:0 calc((min(100vw - 96px, 1360px) - 100vw)/2);background:#f1eee5}
+    #tjanster::before{content:"";position:absolute;z-index:-1;inset:0 calc((min(100vw - 96px, 1360px) - 100vw)/2);--fade-stop:max(32px,calc(33.3333vw - 453.333px));background:linear-gradient(to right,transparent,#f1eee5 var(--fade-stop),#f1eee5 calc(100% - var(--fade-stop)),transparent)}
     #tjanster .eyebrow{color:#a34817}
     .section-heading{margin-bottom:56px}
     .section-heading h2,.contact-title,.booking-copy h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(48px,5.3vw,74px);font-weight:400;line-height:1.05;letter-spacing:-.045em}
@@ -219,7 +219,7 @@
       .strip-inner{padding:22px 0;gap:18px}
       .strip-item{font-size:14px}
       .section{padding:90px 0}
-      #tjanster::before{inset:0 -20px}
+      #tjanster::before{inset:0 -20px;--fade-stop:13.333px}
       .section-heading h2,.contact-title,.booking-copy h2{font-size:48px}
       .section-intro{font-size:16px}
       .services{grid-template-columns:1fr}
@@ -284,7 +284,7 @@
     .service-photo span{position:absolute;z-index:1;left:20px;bottom:18px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.02em}
     @media(min-width:700px) and (max-width:1000px){
       .wrap,.closing.wrap{width:calc(100% - 64px)}
-      #tjanster::before{inset:0 -32px}
+      #tjanster::before{inset:0 -32px;--fade-stop:21.333px}
       .services-layout{grid-template-columns:minmax(160px,.8fr) minmax(0,2fr);gap:20px}
       .service-card h3{font-size:16px}
       .service-card p{font-size:13px}
@@ -295,22 +295,38 @@
       .closing.wrap{width:100%}
     }
     /* Logotyp och fristående chattpanel. */
-    .brand-mark{width:40px;height:40px;flex:none}
+    .brand-mark{width:53px;height:40px;flex:none}
     .brand-name{font-family:Manrope,sans-serif;font-size:15px;font-weight:700;letter-spacing:-.025em;white-space:nowrap}
-    .chat-body{position:fixed;z-index:50;right:24px;bottom:24px;width:min(410px,calc(100% - 32px));max-height:calc(100dvh - 32px);display:flex;flex-direction:column;background:#f4f0e7;color:#24241f;border:1px solid #d6d1c5;border-radius:14px;box-shadow:0 18px 70px rgba(0,0,0,.4);overflow:hidden}
+    .chat-shell{position:fixed;z-index:50;right:24px;bottom:24px;width:min(320px,calc(100% - 32px));max-height:calc(100dvh - 48px);margin:0;display:flex;flex-direction:column-reverse;box-shadow:0 18px 70px rgba(0,0,0,.4)}
+    .chat-header{flex-shrink:0}
+    .chat-body{min-height:0;display:flex;flex-direction:column;background:#f4f0e7;color:#24241f;border:0;border-bottom:1px solid #d6d1c5;overflow:hidden}
     .chat-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 20px;border-bottom:1px solid #d6d1c5}
     .chat-panel-heading strong{font-size:15px}
     .chat-close{width:36px;height:36px;border:0;border-radius:50%;background:#e5e0d6;color:#24241f;font-size:24px;line-height:1}
     .chat-close:hover{background:#d7cfc0}
     .chat-body .messages{flex:1;min-height:80px}
     .chat-form{flex-shrink:0}
+    .footer{padding:24px 0 110px}
+    .footer-inner{min-height:0;align-items:flex-start;gap:24px}
+    .footer-branding{display:grid;gap:8px}
+    .footer .contact-list{display:flex;flex-wrap:wrap;gap:16px 30px;margin:0;border:0}
+    .footer .contact-row{display:block;padding:0;border:0;font-size:13px;line-height:1.5}
+    .footer .contact-row dt{font-size:11px}
+    .footer .contact-row small{display:none}
+    @media(min-width:1101px){
+      .footer{padding-bottom:24px}
+      .footer-inner{padding-right:320px}
+    }
     @media(min-width:700px){
       .hero{min-height:clamp(420px,57vh,550px)}
       .hero h1{font-size:clamp(54px,5vw,72px)}
     }
     @media(max-width:699px){
       .brand-name{font-size:clamp(12px,3.8vw,15px)}
-      .chat-body{right:16px;bottom:16px}
+      .chat-shell{right:16px;bottom:16px;max-height:calc(100dvh - 32px)}
+      .footer{padding-bottom:145px}
+      .footer-inner{padding:0}
+      .footer .contact-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
     }
   </style>
 </head>
@@ -318,16 +334,21 @@
   <!-- Header -->
   <header class="wrap header">
     <a class="brand" href="#top" aria-label="Polos Rullande Cykelverkstad, till startsidan">
-      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="1.2"/>
-        <circle cx="24" cy="24" r="16.5" stroke="currentColor" stroke-opacity=".4" stroke-width=".8"/>
-        <path d="M18 34V14h7.1c4.2 0 6.9 2.4 6.9 6.1s-2.7 6.2-6.9 6.2H18M14 34h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg class="brand-mark" viewBox="145 110 740 565" aria-hidden="true">
+        <defs>
+          <filter id="brand-color" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -.2126 -.7152 -.0722 0 1" result="logo-mask"/>
+            <feFlood flood-color="#f8893e"/>
+            <feComposite in2="logo-mask" operator="in"/>
+          </filter>
+        </defs>
+        <image href="img/logo-original.jpg" width="1024" height="938" filter="url(#brand-color)"/>
       </svg>
       <span class="brand-name">Polos Rullande Cykelverkstad</span>
     </a>
     <nav class="nav" aria-label="Huvudmeny">
       <a href="#tjanster">Tjänster</a>
-      <a href="#boka" class="nav-cta" data-open-chat>Boka / chatta <span aria-hidden="true">↗</span></a>
+      <a href="#chat-body" class="nav-cta" data-open-chat>Boka / chatta <span aria-hidden="true">↗</span></a>
       <a href="#kontakt">Kontakt</a>
     </nav>
   </header>
@@ -340,7 +361,7 @@
         <h1 id="hero-title">Flexibel cykelservice<br><em>På dina villkor.</em></h1>
         <p class="hero-description"><strong>Professionell cykelservice i Helsingborg – på plats eller från verkstaden.</strong> Från vardagshojar och racers till elcyklar och tunga el-cargobikes. Punkteringar, underhåll, service, reparation och restaurering.</p>
         <div class="hero-actions">
-          <a class="button-primary" href="#boka" data-book>Boka service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a class="button-primary" href="#chat-body" data-book>Boka service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           <a class="text-link" href="#tjanster">Upptäck tjänsterna <span aria-hidden="true">↓</span></a>
         </div>
       </div>
@@ -380,59 +401,39 @@
       </div>
     </section>
 
-    <div class="closing wrap">
-    <!-- Chatten är en lokal demonstration och skickar inga meddelanden. -->
-    <section class="booking section" id="boka" aria-labelledby="booking-title">
-      <div class="wrap booking-grid">
-        <div class="booking-copy">
-          <div class="eyebrow">Enklare än du tror</div>
-          <h2 id="booking-title">Boka här!</h2>
-        </div>
-        <div>
-          <div class="chat-shell">
-            <button type="button" class="chat-header" id="chat-toggle" aria-expanded="false" aria-controls="chat-body">
-              <span class="chat-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3-.6L5 20l1.5-4A7.5 7.5 0 1 1 20 11.5Z"/><path d="M9 11.5h7m-7 3h4"/></svg></span>
-              <span class="chat-title"><strong>Chatta med Polo</strong><span>Demoversion · öppna chatten</span></span>
-              <svg class="chat-toggle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="chat-body" id="chat-body" role="region" aria-label="Chatta med Polo" hidden>
-              <div class="chat-panel-heading"><strong>Chatta med Polo</strong><button class="chat-close" id="chat-close" type="button" aria-label="Stäng chatten">×</button></div>
-              <p class="chat-notice">Det här är en demochatt med automatiska svar. Inga meddelanden skickas och inga bokningar görs här ännu.</p>
-              <div class="messages" id="messages" role="log" aria-label="Chattmeddelanden" aria-live="polite">
-                <div class="message">Hej och välkommen! 👋 Berätta gärna vad du behöver hjälp med. För riktig kontakt, ring eller sms:a 0738-99 79 33.</div>
-              </div>
-              <form class="chat-form" id="chat-form">
-                <input id="chat-input" type="text" maxlength="500" placeholder="Skriv ett meddelande..." aria-label="Ditt meddelande" autocomplete="off" required>
-                <button type="submit" aria-label="Skicka meddelande"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Kontakt -->
-    <section class="wrap section contact-grid" id="kontakt" aria-labelledby="contact-title">
-      <div>
-        <div class="eyebrow">Nära till hands</div>
-        <h2 class="contact-title" id="contact-title">Vi ses där cykeln finns.</h2>
-        <p class="contact-copy">I Helsingborg, på plats eller från verkstaden.</p>
-      </div>
-      <dl class="contact-list">
-        <div class="contact-row"><dt>Område</dt><dd>Mariastaden, Helsingborg<small>Ambulerande service &amp; verkstad</small></dd></div>
-        <div class="contact-row"><dt>Telefon / sms</dt><dd><a href="tel:+46738997933">0738-99 79 33 ↗</a></dd></div>
-        <div class="contact-row"><dt>Mejl</dt><dd>E-postadress kommer snart</dd></div>
-        <div class="contact-row"><dt>Öppettider</dt><dd>Kontakta mig för aktuella öppettider</dd></div>
-        <div class="contact-row"><dt>Socialt</dt><dd><a href="https://www.facebook.com/PoloCykel" target="_blank" rel="noopener noreferrer">Facebook ↗</a></dd></div>
-      </dl>
-    </section>
-    </div>
-
   </main>
 
-  <footer class="footer">
-    <div class="wrap footer-inner"><span class="footer-brand">Polos Rullande Cykelverkstad</span><span>För att även cyklar behöver kärlek.</span><a href="#top">Tillbaka till toppen ↑</a></div>
+  <footer class="footer" id="kontakt">
+    <div class="wrap footer-inner">
+      <div class="footer-branding"><span class="footer-brand">Polos Rullande Cykelverkstad</span><span>För att även cyklar behöver kärlek.</span></div>
+      <dl class="contact-list">
+        <div class="contact-row"><dt>Område</dt><dd>Mariastaden, Helsingborg</dd></div>
+        <div class="contact-row"><dt>Mejl</dt><dd>E-postadress kommer snart</dd></div>
+        <div class="contact-row"><dt>Telefon / sms</dt><dd><a href="tel:+46738997933">0738-99 79 33 ↗</a></dd></div>
+        <div class="contact-row"><dt>Socialt</dt><dd><a href="https://www.facebook.com/PoloCykel" target="_blank" rel="noopener noreferrer">Facebook ↗</a></dd></div>
+      </dl>
+    </div>
   </footer>
+
+  <!-- Chatten är en lokal demonstration och skickar inga meddelanden. -->
+  <div class="chat-shell">
+    <button type="button" class="chat-header" id="chat-toggle" aria-expanded="false" aria-controls="chat-body">
+      <span class="chat-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3-.6L5 20l1.5-4A7.5 7.5 0 1 1 20 11.5Z"/><path d="M9 11.5h7m-7 3h4"/></svg></span>
+      <span class="chat-title"><strong>Chatta med Polo</strong><span>Demoversion · öppna chatten</span></span>
+      <svg class="chat-toggle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="chat-body" id="chat-body" role="region" aria-label="Chatta med Polo" hidden>
+      <div class="chat-panel-heading"><strong>Chatta med Polo</strong><button class="chat-close" id="chat-close" type="button" aria-label="Stäng chatten">×</button></div>
+      <p class="chat-notice">Det här är en demochatt med automatiska svar. Inga meddelanden skickas och inga bokningar görs här ännu.</p>
+      <div class="messages" id="messages" role="log" aria-label="Chattmeddelanden" aria-live="polite">
+        <div class="message">Hej och välkommen! 👋 Berätta gärna vad du behöver hjälp med. För riktig kontakt, ring eller sms:a 0738-99 79 33.</div>
+      </div>
+      <form class="chat-form" id="chat-form">
+        <input id="chat-input" type="text" maxlength="500" placeholder="Skriv ett meddelande..." aria-label="Ditt meddelande" autocomplete="off" required>
+        <button type="submit" aria-label="Skicka meddelande"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+      </form>
+    </div>
+  </div>
 
   <script>
     // Chattens gränssnitt är fristående från en eventuell framtida bokningsintegration.
