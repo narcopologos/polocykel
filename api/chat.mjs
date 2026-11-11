@@ -61,10 +61,13 @@ export default {
       return error('Meddelandet har ett ogiltigt format.', 400);
     }
 
+    let stage = 'läsning av tjänstkontonyckel';
     try {
       const { project, client } = getCredentials();
+      stage = 'Google-autentisering';
       const { token } = await client.getAccessToken();
       if (!token) throw new Error('Google returnerade ingen åtkomsttoken.');
+      stage = 'Gemini-anrop';
       const response = await fetch(
         `https://aiplatform.googleapis.com/v1/projects/${encodeURIComponent(project)}/locations/global/publishers/google/models/${encodeURIComponent(model)}:generateContent`,
         {
@@ -87,6 +90,7 @@ export default {
         return error('Polo kunde inte svara just nu. Försök igen om en stund.', 502);
       }
 
+      stage = 'läsning av Gemini-svar';
       const result = await response.json();
       const reply = result.candidates?.[0]?.content?.parts
         ?.filter(part => typeof part.text === 'string' && !part.thought)
@@ -98,7 +102,7 @@ export default {
 
       return Response.json({ reply });
     } catch (cause) {
-      console.error('Gemini-anropet misslyckades:', cause.name);
+      console.error('Polo misslyckades vid', stage, ':', cause?.name);
       return error('Polo kunde inte nås just nu. Försök igen om en stund.', 502);
     }
   }
